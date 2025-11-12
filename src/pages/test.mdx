@@ -1,0 +1,284 @@
+# GitHub Flavored Markdown (GFM) Feature Test
+
+This document serves as a test and a quick reference for all major features of GitHub Flavored Markdown.
+
+## Table of Contents
+1.  [Headings](#headings)
+2.  [Text Formatting](#text-formatting)
+3.  [Blockquotes](#blockquotes)
+4.  [Lists](#lists)
+    - [Unordered Lists](#unordered-lists)
+    - [Ordered Lists](#ordered-lists)
+    - [Task Lists (GFM)](#task-lists-gfm)
+5.  [Code Blocks](#code-blocks)
+    - [Inline Code](#inline-code)
+    - [Fenced Code Blocks](#fenced-code-blocks)
+    - [Syntax Highlighting](#syntax-highlighting)
+    - [Diffs](#diffs)
+6.  [Tables (GFM)](#tables-gfm)
+7.  [Links](#links)
+8.  [Images](#images)
+9.  [Horizontal Rules](#horizontal-rules)
+10. [GitHub Specific Features](#github-specific-features)
+    - [Emoji](#emoji)
+    - [Mentions, Issues, and Commits](#mentions-issues-and-commits)
+    - [Alerts (New)](#alerts-new)
+    - [Footnotes](#footnotes)
+11. [HTML Elements](#html-elements)
+    - [Collapsible Sections](#collapsible-sections)
+    - [Subscript and Superscript](#subscript-and-superscript)
+
+---
+
+## Headings
+
+# Heading 1
+## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
+###### Heading 6
+
+---
+
+## Text Formatting
+
+Here is a demonstration of various text styles.
+
+**Bold Text** using `**asterisks**`
+__Bold Text__ using `__underscores__`
+
+*Italic Text* using `*asterisks*`
+_Italic Text_ using `_underscores`_
+
+***Bold and Italic*** using `***asterisks***`
+___Bold and Italic___ using `___underscores___`
+
+~~Strikethrough Text~~ using `~~tildes~~` (GFM feature)
+
+---
+
+## Blockquotes
+
+You can quote text using the `>` character.
+
+> This is a single-line blockquote.
+
+> This is a multi-line blockquote.
+> The second line is also part of the quote.
+>
+> You can have paragraphs inside a blockquote as well.
+
+You can also nest blockquotes:
+> Level 1 quote.
+>> Level 2 quote.
+>>> Level 3 quote.
+
+---
+
+## Lists
+
+### Unordered Lists
+
+Use `*`, `-`, or `+` for bullet points.
+
+*   Item A
+*   Item B
+    *   Nested Item 1
+    *   Nested Item 2
+-   Item C
++   Item D
+
+### Ordered Lists
+
+Numbers are followed by a period.
+
+1.  First item
+2.  Second item
+3.  Third item
+    1.  Nested ordered item
+    2.  Another nested item
+4.  Fourth item
+
+*Note: The actual numbers you use don't matter, Markdown will render them sequentially.*
+
+1.  Item 1
+1.  Item 2
+8.  Item 3 (renders as 3)
+
+### Task Lists (GFM)
+
+A very useful feature for tracking tasks in issues and pull requests.
+
+- [x] Finish the documentation.
+- [x] Push to GitHub.
+- [ ] Deploy to production.
+- [ ] Celebrate!
+
+---
+
+## Code Blocks
+
+### Inline Code
+You can format text as `inline code` by wrapping it in backticks. Useful for `variable_names` or `commands`.
+
+### Fenced Code Blocks
+Use triple backticks ` ``` ` to create a multi-line code block.
+
+```
+This is a plain code block.
+No syntax highlighting is applied.
+Useful for raw text output.
+```
+
+### Syntax Highlighting
+
+GFM supports syntax highlighting. Specify the language after the opening backticks.
+
+```javascript
+// Example JavaScript code
+function greet(name) {
+  return `Hello, ${name}!`;
+}
+
+const user = 'GitHub User';
+console.log(greet(user));
+```
+
+```python
+# Example Python code
+def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n-1)
+
+print(factorial(5))
+```
+
+### Diffs
+You can also show differences in code using the `diff` language identifier.
+
+```diff
+- old line of code
++ new line of code
+  unchanged line
+! modified line (not standard but sometimes seen)
+```
+
+---
+
+## Tables (GFM)
+
+Tables are created using pipes `|` and hyphens `-`.
+
+| Header 1      | Header 2      | Header 3      |
+|---------------|:-------------:|--------------:|
+| Left-aligned  | Centered      | Right-aligned |
+| Cell 1        | Cell 2        | Cell 3        |
+| Another row   | With more text| And numbers   |
+
+*Colons in the header divider row control text alignment.*
+
+---
+
+## Links
+
+[This is a link to GitHub](https://github.com "GitHub's Homepage")
+
+You can also just paste a URL and it will be auto-linked: https://astro.build
+
+Reference-style links are also supported.
+[This is a reference link][ref1]. You can define the reference later in the document.
+
+[ref1]: https://www.markdownguide.org
+
+---
+
+## Images
+
+![An Octocat](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png "The GitHub Octocat logo")
+
+You can also make an image a link:
+[![A placeholder image](https://via.placeholder.com/200x50.png?text=Click+Me!)](https://github.com)
+
+---
+
+## Horizontal Rules
+
+Create a thematic break or horizontal rule with three or more hyphens, asterisks, or underscores.
+
+---
+
+***
+
+___
+
+
+---
+
+## GitHub Specific Features
+
+### Emoji
+GitHub supports emoji shortcodes. :tada: :rocket: :warning:
+
+Here are some more: :smile:, :cat:, :computer:.
+
+### Mentions, Issues, and Commits
+
+-   Mention a user: @pxrxp (will notify the user if in an issue/PR)
+-   Reference an issue or PR in this repo: #1
+-   Reference an issue/PR in another repo: `pxrxp/pxrxp-github-io#1`
+-   Reference a commit SHA: `1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b`
+
+### Alerts (New)
+GitHub recently added a special blockquote syntax for alerts.
+
+> [!NOTE]
+> This is a note. Useful for highlighting information that is important but not critical.
+
+> [!TIP]
+> This is a tip. Great for suggesting an easier way to do something.
+
+> [!IMPORTANT]
+> This is an important message. Use it for things users should not miss.
+
+> [!WARNING]
+> This is a warning. Use it for potential pitfalls or data loss warnings.
+
+> [!CAUTION]
+> This is a caution alert. Stronger than a warning, used for critical risks.
+
+### Footnotes
+
+Here is some text with a footnote.[^1] You can find the footnote's content at the bottom of the section. Another one.[^note2]
+
+[^1]: This is the first footnote's content.
+[^note2]: Here is the content for the second, named footnote.
+
+---
+
+## HTML Elements
+
+You can use a subset of raw HTML in your Markdown.
+
+### Collapsible Sections
+
+<details>
+<summary>Click to expand</summary>
+
+You can put any Markdown content inside here.
+
+- A list item
+- Another list item
+
+```python
+print("Hello from a collapsible section!")
+```
+</details>
+
+### Subscript and Superscript
+
+H<sub>2</sub>O is the chemical formula for water.
+
+2<sup>10</sup> is 1024.
