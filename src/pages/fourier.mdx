@@ -1,0 +1,14 @@
+---
+layout: '../../layouts/BlogPost.astro'
+title: 'Journey from Euler to Fourier'
+---
+import EqPlot from '../components/EqPlot.jsx'
+
+Plot of $f(x) = e^x$
+<EqPlot
+  funcStrings={['Math.exp(-x)']}
+  boardConfig={{
+    boundingbox: [-1, 3, 7, -0.5],
+  }}
+  client:visible
+/>

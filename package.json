@@ -10,6 +10,17 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.10",
-    "astro": "^5.15.5"
+    "@astrojs/react": "^4.4.2",
+    "@mermaid-js/layout-elk": "^0.2.0",
+    "@types/react": "^19.2.4",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^5.15.5",
+    "astro-mermaid": "^1.1.0",
+    "jsxgraph": "^1.12.0",
+    "mermaid": "^11.12.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0"
   }
 }

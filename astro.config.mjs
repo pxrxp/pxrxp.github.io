@@ -1,9 +1,19 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+
 import mdx from '@astrojs/mdx';
 
-// https://astro.build/config
+import mermaid from 'astro-mermaid';
+
+import react from '@astrojs/react';
+
 export default defineConfig({
-  integrations: [mdx()]
+  markdown: {
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeKatex],
+  },
+  integrations: [mdx(), mermaid(), react()]
 });
