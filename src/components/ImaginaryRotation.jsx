@@ -109,7 +109,14 @@ const ReImRotExample = () => {
     const pX = board.create('point', [() => point.X(), 0], { visible: false });
     const pY = board.create('point', [0, () => point.Y()], { visible: false });
 
-    const origin = board.create('point', [0, 0], { visible: false });
+    const origin = board.create('point',
+      [0, 0],
+      {
+        name: "",
+        color: "darkorange",
+        visible: () => radio.Value() == "Polar"
+      }
+    );
     const xOne = board.create('point', [1, 0], { visible: false });
 
     board.create('angle',
@@ -175,7 +182,7 @@ const ReImRotExample = () => {
     window.addEventListener('resize', () => board.update());
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', () => board.update());
       JSXGraph.freeBoard(board);
     };
   }, []);
