@@ -59,33 +59,54 @@ $x =$ real part $=$ &nbsp; Re(z) or $\Re (z)$
 
 $y =$ imaginary part $=$ &nbsp; Im(z) or $\Im (z)$
 
-$r =$ distance from origin (0, 0) $ = |z|$
+$r =$ distance from origin (0, 0) $ = |z| = \sqrt{x^2 + y^2}$
 
 $\theta = $ angle from X axis $=\arg(z)$
 
 ## Unit circle
-Back to the figure:
-Let a point on the circle be $z = x + iy$. Let's find out what $x$ and $y$ are here. Circles are easier to work with using angles so, we use polar system.
+Let $z = x+iy$ be any arbitrary point on the circle.
 
-$r = 1 = \text{const} \Longrightarrow x = f(\theta), y = g(\theta)$
+All points of a circle are at same distance (called *radius*) from the center of the circle.
 
 <br/>
+**Equation of circle:** 
 
+$$
+\begin{aligned}
+|z| &= \text{radius}\\
+\sqrt{x^2+y^2}&=r\\
+x^2+y^2&=r^2
+\end{aligned}
+$$
+**Unit circle** is the path traced by the number 1 as it rotates around the origin in the complex plane.
+<br/>
+Number 1 is at distance 1 from origin.
+
+$\Longrightarrow$ All points are at distance 1 from origin.
+
+$\Longrightarrow \text{radius } = 1$
+
+$\therefore r = \text{const }$, $z$ depends mainly on $\theta$
+
+Let $x = f_1(\theta), \text{ }y = f_2(\theta)$
+
+<br/>
+**Measurements from the unit circle:**
 | | $0$ | $\dfrac{\pi}{4}$ | $\dfrac{\pi}{2}$ | $\dfrac{3\pi}{4}$ |
 | :--- | :---: | :---: | :---: | :---: |
-| $x=f(\theta)$ | $1$ | $\dfrac{\sqrt{2}}{2}$ | $0$ | $-\dfrac{\sqrt{2}}{2}$ |
-| $y=g(\theta)$ | $0$ | $\dfrac{\sqrt{2}}{2}$ | $1$ | $\dfrac{\sqrt{2}}{2}$ |
+| $x=f_1(\theta)$ | $1$ | $\dfrac{\sqrt{2}}{2}$ | $0$ | $-\dfrac{\sqrt{2}}{2}$ |
+| $y=f_2(\theta)$ | $0$ | $\dfrac{\sqrt{2}}{2}$ | $1$ | $\dfrac{\sqrt{2}}{2}$ |
 
 <br/>
 
 | | $\pi$ | $\dfrac{5\pi}{4}$ | $\dfrac{3\pi}{2}$ | $\dfrac{7\pi}{4}$ |
 | :--- | :---: | :---: | :---: | :---: |
-| $x=f(\theta)$ | $-1$ | $-\dfrac{\sqrt{2}}{2}$ | $0$ | $\dfrac{\sqrt{2}}{2}$ |
-| $y=g(\theta)$ | $0$ | $-\dfrac{\sqrt{2}}{2}$ | $-1$ | $-\dfrac{\sqrt{2}}{2}$ |
+| $x=f_1(\theta)$ | $-1$ | $-\dfrac{\sqrt{2}}{2}$ | $0$ | $\dfrac{\sqrt{2}}{2}$ |
+| $y=f_2(\theta)$ | $0$ | $-\dfrac{\sqrt{2}}{2}$ | $-1$ | $-\dfrac{\sqrt{2}}{2}$ |
 
 <br/>
 These doesn't seem to be some familiar function. We can define these as new functions named *cosine* and *sine*.
-$f(\theta)=\cos(\theta)$ and $g(\theta)=\sin(\theta)$
+$f_1(\theta)=\cos(\theta)$ and $f_2(\theta)=\sin(\theta)$
 <br/>
 
 <br/>
@@ -201,7 +222,9 @@ $$
 \end{aligned}
 $$
 
-$\therefore$ For unit circle $|z|=1$,
+$\therefore$ For unit circle:
+
+$|z|=\sqrt{\cos^2\theta + \sin^2\theta}=1$
 
 $z = cos\theta + i \sin\theta$
 
@@ -209,3 +232,101 @@ $z = cos\theta + i \sin\theta$
 Generalizing,
 
 $\boldsymbol{z = r\angle\theta = r (\cos\theta + i\sin\theta)}$
+
+## Taylor Series
+We said that the cosine and sine functions did not resemble any functions we knew.
+
+But we might want a method to **approximate** these functions numerically. Graphically drawing a circle each time and measuring might not be convenient.
+<br/>
+If we **ignore** the **periodicity** of cosine for a while, we see,
+
+$cos(x)$ resembles $1-x^2$ a liii...ttle bit, especially at the origin ($x=0$).
+<br/>
+<details>
+<summary>How I came up with $1-x^2$</summary>
+I knew that plot of $f(x)=x^2$ is a parabola (U shaped)
+
+Then $f(x)=-x^2$ should be a ∩ shaped [ $\because\times(-1)$ flipped the direction]
+
+Now, the shape roughly matches.
+<br/>
+Problem: $cos(0) = 1$ but $f(0)=-0^2 = 0$
+
+Add 1 so that
+$f(x) = 1-x^2$
+
+$f(0)=1-0^2 = 1 =cos(0)$
+
+</details>
+<br/>
+
+<EqPlot
+  funcStrings={['1-x*x']}
+  containerStyle = {{
+    maxHeight: '200px'
+  }}
+  boardConfig={{
+    boundingbox: [-Math.PI-0.18, 2.2, Math.PI+0.36, -5.5],
+    axis: true,
+    fixed: true,
+    showCopyright: false,
+    defaultAxes: {
+        x: {
+            name: 'x',
+            withLabel: true,
+            label: {
+                position: 'rt',
+                offset: [5, 15],
+                anchorX: 'right'
+            },
+            ticks: {
+                minTicksDistance: 0,
+                minorTicks:4,
+                ticksDistance: 3,
+                scale: Math.PI,
+                scaleSymbol: 'π',
+                insertTicks: true
+            }
+        },
+        y: {
+            name: '1-x^2',
+            withLabel: true,
+            ticks: {
+              ticksDistance: 0.5
+            },
+            label: {
+                position: 'rt',
+                offset: [-50, 5],
+                anchorY: 'top'
+            }
+        }
+    }
+  }}
+  client:visible
+/>
+<br/>
+But such method cant be used to accurately approximate. We need a more robust method.
+Let us take a **leap of faith** and just say...
+
+$cos(x) = a_0 + a_1x + a_2x^2 + \ldots$
+<br/>
+
+We need to find a method that will calculate 
+$a_0 = ?$, $a_1=?$, $a_2=?$, $\ldots$
+
+We don't have a formula or anything for $cos(x)$ yet that we could use to simplify.
+We can only **evaluate** it at **different points** using that unit circle.
+<br/>
+
+Our method needs to take values of $cos(x)$ at different points and spit out $a_0, a_1, a_2, \ldots$
+
+For $f(x)=x^3$, the method would output $a_3 = 1, a_0 = a_1 = a_2 = a_4 = \ldots = 0$
+
+<br/>
+This is actually called **McLaurin series**.
+It is a **generalization of Taylor series** (approximated at origin i.e. calculated at $\boldsymbol{a = 0}$).
+<br/>
+**Taylor Series** approximation of a function f(x) **at point** $\boldsymbol{x = a}$ is:
+
+$\boldsymbol{f(x) = a_0+a_1(x-a) + a_2(x-a)^2+\dots}$
+<br/>
