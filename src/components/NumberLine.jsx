@@ -13,6 +13,12 @@ const boardConfig = {
   boundingbox: [-20, 1, 20, -0.15],
   showCopyright: false,
   showNavigation: false,
+  pan: {
+    enabled: false
+  },
+  zoom: {
+    enabled: false
+  },
 };
 
 const NumberLineMulNegOneExample = () => {
