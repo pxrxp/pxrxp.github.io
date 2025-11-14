@@ -52,7 +52,7 @@ const EqPlot = ({
     }
 
     const handleResize = () => {
-        board.updateBoard();
+        board.update();
     };
     window.addEventListener('resize', handleResize);
 
