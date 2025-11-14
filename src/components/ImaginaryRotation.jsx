@@ -15,6 +15,12 @@ const boardConfig = {
   axis: true,
   showCopyright: false,
   showNavigation: false,
+  pan: {
+    enabled: false
+  },
+  zoom: {
+    enabled: false
+  },
   defaultAxes: {
     x: {
       name: 'Re(z)',
@@ -50,7 +56,7 @@ const ReImRotExample = () => {
       boardConfig
     );
 
-    const center = board.create('point', [0.0, 0.0], { visible: false });
+    const center = board.create('point', [0.0, 0.0], { visible: false, fixed: true });
     const circle = board.create('circle', [center, 1.0], {
       fixed: true
     });
@@ -70,7 +76,7 @@ const ReImRotExample = () => {
     }
 
     var radio = board.create('text', [
-      -1.2, -0.9,
+      -1.2, -1.0,
       `
         <input type="radio" name="plotType" value="Cartesian" onchange="window.changePlotType();" checked />Cartesian<br/>
         <input type="radio" name="plotType" value="Polar" onchange="window.changePlotType();" />Polar<br/>
@@ -83,7 +89,7 @@ const ReImRotExample = () => {
     };
 
     board.create('text', [
-      -1.2, -1.1,
+      0.5, -1.1,
       () => {
         const x = point.X().toFixed(2);
         const y = point.Y();
@@ -102,12 +108,12 @@ const ReImRotExample = () => {
         return '';
       }
     ], {
-      fontSize: 23,
+      fontSize: 16,
       color: 'crimson'
     });
 
-    const pX = board.create('point', [() => point.X(), 0], { visible: false });
-    const pY = board.create('point', [0, () => point.Y()], { visible: false });
+    const pX = board.create('point', [() => point.X(), 0], { visible: false, fixed: true });
+    const pY = board.create('point', [0, () => point.Y()], { visible: false, fixed: true });
 
     const origin = board.create('point',
       [0, 0],
@@ -117,7 +123,7 @@ const ReImRotExample = () => {
         visible: () => radio.Value() == "Polar"
       }
     );
-    const xOne = board.create('point', [1, 0], { visible: false });
+    const xOne = board.create('point', [1, 0], { visible: false, fixed: true });
 
     board.create('angle',
       [xOne, origin, point],
@@ -130,22 +136,25 @@ const ReImRotExample = () => {
     board.create('segment', [point, pX], {
       strokeColor: 'gray',
       strokeWidth: () => radio.Value() == "Cartesian" ? 1 : 0,
-      dash: 2
+      dash: 2,
+      fixed: true
     });
 
     board.create('segment', [point, pY], {
       strokeColor: 'gray',
       strokeWidth: () => radio.Value() == "Cartesian" ? 1 : 0,
-      dash: 2
+      dash: 2,
+      fixed: true
     });
 
     const speed = board.create('slider', [
-      [0.5, 1.0],
-      [0.8, 1.0],
+      [0.3, 1.15],
+      [0.6, 1.15],
       [0.01, 1, 3]
     ], {
       name: '. Speed',
-      snapWidth: 0.01
+      snapWidth: 0.01,
+      fixed: true
     });
     const defaultDuration = 1200;
 

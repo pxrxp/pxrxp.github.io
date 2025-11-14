@@ -4,13 +4,13 @@ import { JSXGraph } from "jsxgraph";
 const containerStyle = {
   width: '100%',
   maxWidth: '800px',
-  maxHeight: '185px',
+  maxHeight: '100px',
   aspectRatio: '2',
   margin: 'auto',
 };
 
 const boardConfig = {
-  boundingbox: [-20, 1, 20, -1],
+  boundingbox: [-20, 1, 20, -0.15],
   showCopyright: false,
   showNavigation: false,
 };
@@ -39,10 +39,11 @@ const NumberLineMulNegOneExample = () => {
           majorHeight: 30,
           tickEndings: [1,1],
           minorTicks: 0
-        }
+        },
+        fixed: true
       });
 
-    var point = board.create('glider', [5, 0, axisx], { name: '', color: 'crimson' });
+    var point = board.create('glider', [5, 0, axisx], { name: '', color: 'crimson', fixed: true });
 
     board.create('button', [
       -20,
