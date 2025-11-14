@@ -65,14 +65,82 @@ const ReImRotExample = () => {
     }
     );
 
+    window.changePlotType = () => {
+      board.update();
+    }
+
+    var radio = board.create('text', [
+      -1.2, -0.9,
+      `
+        <input type="radio" name="plotType" value="Cartesian" onchange="window.changePlotType();" checked />Cartesian<br/>
+        <input type="radio" name="plotType" value="Polar" onchange="window.changePlotType();" />Polar<br/>
+        `
+    ], { fixed: true, frozen: true });
+
+    radio.Value = () => {
+      let opt = document.querySelector(`input[name=plotType]:checked`);
+      return opt = (opt != null) ? opt.value : "";
+    };
+
+    board.create('text', [
+      -1.2, -1.1,
+      () => {
+        const x = point.X().toFixed(2);
+        const y = point.Y();
+
+        if (radio.Value() == "Cartesian") {
+          if (y >= 0) {
+            return x + ' + i ' + y.toFixed(2);
+          } else {
+            return x + ' - i ' + Math.abs(y).toFixed(2);
+          }
+        } else if (radio.Value() == "Polar") {
+          let angle = (Math.atan2(y, x) * 180) / Math.PI;
+          angle = angle < 0.0 ? angle + 360.0 : angle;
+          return '1.00∠' + angle.toFixed(2) + '°';
+        }
+        return '';
+      }
+    ], {
+      fontSize: 23,
+      color: 'crimson'
+    });
+
+    const pX = board.create('point', [() => point.X(), 0], { visible: false });
+    const pY = board.create('point', [0, () => point.Y()], { visible: false });
+
+    const origin = board.create('point', [0, 0], { visible: false });
+    const xOne = board.create('point', [1, 0], { visible: false });
+
+    board.create('angle',
+      [xOne, origin, point],
+      {
+        radius: () => radio.Value() == "Polar" ? 1 : 0,
+        name: ""
+      }
+    );
+
+    board.create('segment', [point, pX], {
+      strokeColor: 'gray',
+      strokeWidth: () => radio.Value() == "Cartesian" ? 1 : 0,
+      dash: 2
+    });
+
+    board.create('segment', [point, pY], {
+      strokeColor: 'gray',
+      strokeWidth: () => radio.Value() == "Cartesian" ? 1 : 0,
+      dash: 2
+    });
+
     const speed = board.create('slider', [
-      [0.6, 1.1],
-      [0.8, 1.1],
-      [0.01, 1, 2]
+      [0.5, 1.0],
+      [0.8, 1.0],
+      [0.01, 1, 3]
     ], {
       name: '. Speed',
       snapWidth: 0.01
     });
+    const defaultDuration = 1200;
 
     board.create('button', [
       -1.2,
@@ -84,9 +152,10 @@ const ReImRotExample = () => {
           [point.X(), 0.0],
           [0.0, y_direction],
           [-point.X(), 0.0],
-        ], 300 / speed.Value());
+        ], defaultDuration / speed.Value());
       }
     ]);
+
     board.create('button', [
       -1.2,
       0.9,
@@ -99,14 +168,11 @@ const ReImRotExample = () => {
           [-point.X(), 0.0],
           [0.0, -y_direction],
           [point.X(), 0.0],
-        ], 2 * 300 / speed.Value());
+        ], 2 * defaultDuration / speed.Value());
       }
     ]);
 
-    const handleResize = () => {
-      board.update();
-    };
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', () => board.update());
 
     return () => {
       window.removeEventListener('resize', handleResize);
