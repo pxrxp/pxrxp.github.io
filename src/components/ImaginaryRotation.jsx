@@ -11,7 +11,7 @@ const containerStyle = {
 };
 
 const boardConfig = {
-  boundingbox: [-1.2, 1.2, 1.2, -1.2],
+  boundingbox: [-1.2, 1.2, 1.24, -1.2],
   axis: true,
   showCopyright: false,
   showNavigation: false,
@@ -27,7 +27,7 @@ const boardConfig = {
       withLabel: true,
       label: {
         position: 'rt',
-        offset: [-5, 15],
+        offset: [13, 15],
         anchorX: 'right'
       }
     },
@@ -36,7 +36,7 @@ const boardConfig = {
       name: 'Im(z)',
       label: {
         position: 'rt',
-        offset: [-40, -5],
+        offset: [-40, 10],
         anchorY: 'top'
       }
     }
@@ -76,12 +76,12 @@ const ReImRotExample = () => {
     }
 
     var radio = board.create('text', [
-      -1.2, -1.0,
+      -1.19, -0.95,
       `
         <input type="radio" name="plotType" value="Cartesian" onchange="window.changePlotType();" checked />Cartesian<br/>
         <input type="radio" name="plotType" value="Polar" onchange="window.changePlotType();" />Polar<br/>
         `
-    ], { fixed: true, frozen: true });
+    ], { fixed: true });
 
     radio.Value = () => {
       let opt = document.querySelector(`input[name=plotType]:checked`);
@@ -89,7 +89,7 @@ const ReImRotExample = () => {
     };
 
     board.create('text', [
-      0.5, -1.1,
+      0.6, -0.95,
       () => {
         const x = point.X().toFixed(2);
         const y = point.Y();
@@ -108,8 +108,9 @@ const ReImRotExample = () => {
         return '';
       }
     ], {
-      fontSize: 16,
-      color: 'crimson'
+      fontSize: 14,
+      color: 'crimson',
+      fixed: true,
     });
 
     const pX = board.create('point', [() => point.X(), 0], { visible: false, fixed: true });
@@ -120,7 +121,8 @@ const ReImRotExample = () => {
       {
         name: "",
         color: "darkorange",
-        visible: () => radio.Value() == "Polar"
+        visible: () => radio.Value() == "Polar",
+        fixed: true
       }
     );
     const xOne = board.create('point', [1, 0], { visible: false, fixed: true });
@@ -129,7 +131,8 @@ const ReImRotExample = () => {
       [xOne, origin, point],
       {
         radius: () => radio.Value() == "Polar" ? 1 : 0,
-        name: ""
+        name: "",
+        fixed: true
       }
     );
 
@@ -154,7 +157,7 @@ const ReImRotExample = () => {
     ], {
       name: '. Speed',
       snapWidth: 0.01,
-      fixed: true
+      anchorY: 'bottom'
     });
     const defaultDuration = 1200;
 
