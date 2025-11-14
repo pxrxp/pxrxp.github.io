@@ -89,7 +89,7 @@ const ReImRotExample = () => {
     };
 
     board.create('text', [
-      0.6, -0.95,
+      0.65, -0.95,
       () => {
         const x = point.X().toFixed(2);
         const y = point.Y();

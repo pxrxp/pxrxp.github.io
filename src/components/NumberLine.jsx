@@ -10,7 +10,7 @@ const containerStyle = {
 };
 
 const boardConfig = {
-  boundingbox: [-20, 1, 20, -0.15],
+  boundingbox: [-20, 1, 20, -0.2],
   showCopyright: false,
   showNavigation: false,
   pan: {
@@ -49,18 +49,18 @@ const NumberLineMulNegOneExample = () => {
         fixed: true
       });
 
-    var point = board.create('glider', [5, 0, axisx], { name: '', color: 'crimson', fixed: true });
+    var point = board.create('glider', [5, 0, axisx], { name: '', color: 'crimson' });
 
     board.create('button', [
       -20,
-      () => board.getBoundingBox()[1] - 0.15,
+      0.8,
       '⨯ (–1)',
       () => point.moveTo([-point.X(), point.Y()], 20),
       {}
     ]);
     board.create('button', [
-      -20,
-      () => board.getBoundingBox()[1] - 0.45,
+      -15,
+      0.8,
       '⨯ (+1)',
       () => {},
       {}

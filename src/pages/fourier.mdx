@@ -3,10 +3,12 @@ layout: '../../layouts/BlogPost.astro'
 title: 'Journey from Euler to Fourier'
 ---
 import EqPlot from '../components/EqPlot.jsx'
+import { piLabelGenerator } from '../components/EqPlot.jsx'
 import NumberLineMulNegOneExample from '../components/NumberLine.jsx'
 import ReImRotExample from '../components/ImaginaryRotation.jsx'
 
-# Basics
+# Journey from Euler to 
+## Complex Number
 <NumberLineMulNegOneExample client:visible/>
 This is the good and old number line. Here, we see:
 
@@ -20,5 +22,190 @@ Number gets **reflected** to the other side.
 <br/>
 Let's see why.  First we start by acknowledging:
 
-**Reflection $\equiv$ Rotation by $\pm$180$^{\circ}$** (i.e. $\pm\frac\pi2$ rad)
+**Reflection $\equiv$ Rotation by $\pm$180$^{\circ}$** (i.e. $\pm\pi$ rad)
+
+i.e. $-1 = 1\angle180^\circ$
+<br/>
 <ReImRotExample client:visible/>
+<br/>
+But for the **rotation** to be **possible**, we had to add a second **perpendicular axis**.
+
+A natural curiosity would be to only rotate 90$^\circ$ to explore the new axis.
+
+$$
+\begin{aligned}
+(-1)\times(-1)&=(+1) \\
+1\angle180^\circ \times 1 \angle 180^\circ &= 1\angle 360^\circ \\
+\\
+\text{Similary,}\\
+(\text{something})\times (\text{something}) &= (-1) \\
+1\angle90^\circ \times 1 \angle 90^\circ &= 1\angle 180^\circ \\
+\end{aligned}
+$$
+Let's find this "$\text{something}$": &nbsp; $x^2 = -1 \Longrightarrow x = \pm \sqrt{-1} = ?$
+
+<br/>
+Just like how numbers 0, 1, 2 are different from each other, this is also a new kinda number we have just discovered (we'll call it a *complex number*). Since we don't have any space on the number line, we put it earlier on a new axis (called *imaginary axis*). Our number line was actually a small section of the 2D *complex plane* all along. We denote this number using $i$ (*imaginary*).
+<br/>
+
+$\boldsymbol{\therefore i^2 = -1}$, &nbsp; $\boldsymbol{i = 1 \angle \frac\pi2}$
+
+<br/>
+$\boldsymbol{z = x + iy = r\angle \theta}$ can be defined as a **complex number** on the complex plane.
+
+where
+
+$x =$ real part $=$ &nbsp; Re(z) or $\Re (z)$
+
+$y =$ imaginary part $=$ &nbsp; Im(z) or $\Im (z)$
+
+$r =$ distance from origin (0, 0) $ = |z|$
+
+$\theta = $ angle from X axis $=\arg(z)$
+
+## Unit circle
+Back to the figure:
+Let a point on the circle be $z = x + iy$. Let's find out what $x$ and $y$ are here. Circles are easier to work with using angles so, we use polar system.
+
+$r = 1 = \text{const} \Longrightarrow x = f(\theta), y = g(\theta)$
+
+<br/>
+
+| | $0$ | $\dfrac{\pi}{4}$ | $\dfrac{\pi}{2}$ | $\dfrac{3\pi}{4}$ |
+| :--- | :---: | :---: | :---: | :---: |
+| $x=f(\theta)$ | $1$ | $\dfrac{\sqrt{2}}{2}$ | $0$ | $-\dfrac{\sqrt{2}}{2}$ |
+| $y=g(\theta)$ | $0$ | $\dfrac{\sqrt{2}}{2}$ | $1$ | $\dfrac{\sqrt{2}}{2}$ |
+
+<br/>
+
+| | $\pi$ | $\dfrac{5\pi}{4}$ | $\dfrac{3\pi}{2}$ | $\dfrac{7\pi}{4}$ |
+| :--- | :---: | :---: | :---: | :---: |
+| $x=f(\theta)$ | $-1$ | $-\dfrac{\sqrt{2}}{2}$ | $0$ | $\dfrac{\sqrt{2}}{2}$ |
+| $y=g(\theta)$ | $0$ | $-\dfrac{\sqrt{2}}{2}$ | $-1$ | $-\dfrac{\sqrt{2}}{2}$ |
+
+<br/>
+These doesn't seem to be some familiar function. We can define these as new functions named *cosine* and *sine*.
+$f(\theta)=\cos(\theta)$ and $g(\theta)=\sin(\theta)$
+<br/>
+
+<br/>
+<EqPlot
+  funcStrings={['Math.cos(x)']}
+  containerStyle = {{
+    maxHeight: '200px'
+  }}
+  boardConfig={{
+    boundingbox: [-3*Math.PI-0.18, 1.5, 3*Math.PI+0.36, -1.5],
+    axis: true,
+    fixed: true,
+    showCopyright: false,
+    defaultAxes: {
+        x: {
+            name: 'θ',
+            withLabel: true,
+            label: {
+                position: 'rt',
+                offset: [5, 15],
+                anchorX: 'right'
+            },
+            ticks: {
+                minTicksDistance: 0,
+                minorTicks:4,
+                ticksDistance: 3,
+                scale: Math.PI,
+                scaleSymbol: 'π',
+                insertTicks: true
+            }
+        },
+        y: {
+            name: 'cos(θ)',
+            withLabel: true,
+            ticks: {
+              ticksDistance: 0.5
+            },
+            label: {
+                position: 'rt',
+                offset: [-50, 5],
+                anchorY: 'top'
+            }
+        }
+    }
+  }}
+  client:visible
+/>
+<br/>
+<EqPlot
+  funcStrings={['Math.sin(x)']}
+  containerStyle = {{
+    maxHeight: '200px'
+  }}
+  boardConfig={{
+    boundingbox: [-3*Math.PI-0.18, 1.5, 3*Math.PI+0.36, -1.5],
+    axis: true,
+    fixed: true,
+    showCopyright: false,
+    defaultAxes: {
+        x: {
+            name: 'θ',
+            withLabel: true,
+            label: {
+                position: 'rt',
+                offset: [5, 15],
+                anchorX: 'right'
+            },
+            ticks: {
+                minTicksDistance: 0,
+                minorTicks:4,
+                ticksDistance: 3,
+                scale: Math.PI,
+                scaleSymbol: 'π',
+                insertTicks: true
+            }
+        },
+        y: {
+            name: 'sin(θ)',
+            withLabel: true,
+            ticks: {
+              ticksDistance: 0.5
+            },
+            label: {
+                position: 'rt',
+                offset: [-50, 5],
+                anchorY: 'top'
+            }
+        }
+    }
+  }}
+  client:visible
+/>
+<br/>
+<br/>
+**Some Important Identities:**
+
+$$
+\begin{aligned}
+\sin(\theta \pm 2\pi) = \sin(\theta)\\
+\cos(\theta \pm 2\pi) = \cos(\theta)
+\end{aligned}
+$$
+So, these are called **periodic functions**
+(repeat at regular intervals, called *period*)
+
+Here, period $=2\pi$.
+
+$$
+\begin{aligned}
+\sin(-\theta) &= -\sin\theta\\
+\cos(-\theta) &= \cos\theta\\\\
+\sin\theta &= \cos(\theta - \frac\pi2)\\
+\end{aligned}
+$$
+
+$\therefore$ For unit circle $|z|=1$,
+
+$z = cos\theta + i \sin\theta$
+
+<br/>
+Generalizing,
+
+$\boldsymbol{z = r\angle\theta = r (\cos\theta + i\sin\theta)}$

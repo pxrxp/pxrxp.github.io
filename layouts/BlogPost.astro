@@ -1,6 +1,7 @@
 ---
 const { frontmatter } = Astro.props;
 const pageTitle = frontmatter.title || 'pxrxp';
+import '../styles/global.css'
 ---
 
 <!DOCTYPE html>
@@ -11,19 +12,6 @@ const pageTitle = frontmatter.title || 'pxrxp';
     <title>{pageTitle}</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
-
-    <style>
-      body {
-        font-family: system-ui, sans-serif;
-        line-height: 1.6;
-        margin: 0;
-      }
-      main {
-        max-width: 800px;
-        margin: 2rem auto;
-        padding: 0 1rem;
-      }
-    </style>
 </head>
 
 <body>
