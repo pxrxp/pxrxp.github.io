@@ -358,7 +358,9 @@ It is a **generalization of Taylor series** (approximated at origin i.e. calcula
 <br/>
 **Taylor Series** approximation of a function f(x) **at point** $\boldsymbol{x = a}$ is:
 
-$\boldsymbol{f(x) = a_0+a_1(x-a) + a_2(x-a)^2+\dots}$
+$$
+\boldsymbol{f(x) = a_0+a_1(x-a) + a_2(x-a)^2+\dots}
+$$
 <br/>
 ---
 <br/>
@@ -423,11 +425,11 @@ $a_1|_{x=a} = \frac{f(a)-f(a)}{a-a}=\frac00=\text{undefined }$
 <br/>
 $[\because \Delta x = 0]$
 <br/>
-But, if $x$ is *veryy veryyy* close to a but $x\ne a$ i.e. $x\rightarrow a$:
+But, if $x$ is *veryy veryyy* close to a but $x\ne a$ i.e. $x\to a$:
 
-$a_1|_{x\rightarrow a} = \frac{\text{very small}}{\text{very small}}=\text{some value }$
+$a_1|_{x\to a} = \frac{\text{very small}}{\text{very small}}=\text{some value }$
 <br/>
-$[\because \Delta x \ne 0, \Delta x \rightarrow 0]$
+$[\because \Delta x \ne 0, \Delta x \to 0]$
 <br/>
 Example:
 
@@ -444,11 +446,15 @@ $$
 <br/>
 *Alternatively,*
 
-$f'(x)= \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x}$
-<br/>
-$f'(x)= \lim_{\Delta x \to 0} \frac{f(x) - f(x - \Delta x)}{\Delta x}$
-<br/>
-$f'(x)= \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x - \Delta x)}{2\Delta x}$
+$$
+\begin{aligned}
+f'(x)&= \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x}\\
+\\
+f'(x)&= \lim_{\Delta x \to 0} \frac{f(x) - f(x - \Delta x)}{\Delta x}\\
+\\
+f'(x)&= \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x - \Delta x)}{2\Delta x}\\
+\end{aligned}
+$$
 
 <br/>
 
@@ -474,4 +480,74 @@ a_3&=\text{ }?\\
 \end{aligned}
 $$
 
+---
+<br/>
+Since, we know the expression for $f(x)$, we can directly evaluate $f(a)$
 
+But, we don't have an expression for $f'(x)$, we can't directly evaluate $f'(a)$
+<br/>
+It would be too complicated to directly find expression for $f'(x)$.
+
+Let's first try to find expression for $g'(x)$
+
+where
+$$
+\begin{aligned}
+g(x) &= x^n\\
+\Longrightarrow g'(x) &= \lim_{\Delta x \to 0} \frac{g(x+\Delta x)-g(x)}{\Delta x}\\
+\\
+&= \lim_{\Delta x \to 0} \frac{(x+\Delta x)^n - x^n}{\Delta x}
+\end{aligned}
+$$
+We are again stuck. We need to somehow evaluate $(x+\Delta x)^n$
+<br/>
+---
+<br/>
+### Binomial Theorem
+Let's start with a simple example.
+
+$$
+\begin{aligned}
+(a+b)^2 &= (a+b)(a+b)\\
+&= \textcolor{darkred}{aa} + \textcolor{#0099FF}{ab} + \textcolor{#0099FF}{ba} + \textcolor{green}{bb}\\
+&= \textcolor{darkred}{a^2} + \textcolor{#0099FF}{2ab} + \textcolor{green}{b^2}
+\end{aligned}
+$$
+
+We can see the $2$ is there **because** there are **2 ways to combine $a$ and $b$**.
+
+(i.e. $ab$ and $ba$)
+
+<br/>
+There is only **$1$ way to combine $a$ and $a$**
+
+(i.e. $a^2$)
+<br/>
+There is only **$1$ way to combine $b$ and $b$**
+
+(i.e. $b^2$)
+<br/><br/>
+Another example:
+
+$$
+\begin{aligned}
+(a+b)^3 &= (a+b)(a+b)(a+b)\\
+&= \textcolor{red}{aaa} + \textcolor{violet}{aab} + \textcolor{violet}{aba} + \textcolor{violet}{baa} + \textcolor{#FF9900}{abb} + \textcolor{#FF9900}{bab} + \textcolor{#FF9900}{bba} + \textcolor{#FF0099}{bbb}\\
+&= \textcolor{red}{a^3} + \textcolor{violet}{3a^2b} + \textcolor{#FF9900}{3ab^2} + \textcolor{#FF0099}{b^3}
+\end{aligned}
+$$
+
+Now, we need to **combine 3 letters**, but we only have $a$ and $b$.
+
+At least one letter will repeat.
+
+Let us count the no. of times one of the character appears.
+
+We'll count $b$ (doesn't matter which you choose)
+<br/>
+|Letters|Count of $b$|Combinations|
+|---|---|---|
+|$a, a, a$|0|$a^3$|
+|$a, a, b$|1|$aab, aba, baa$|
+|$a, b, b$|2|$abb, bab, bba$|
+|$b, b, b$|3|$bbb$|

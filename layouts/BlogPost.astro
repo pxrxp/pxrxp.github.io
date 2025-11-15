@@ -1,7 +1,8 @@
 ---
 const { frontmatter } = Astro.props;
 const pageTitle = frontmatter.title || 'pxrxp';
-import '../styles/global.css'
+import '../styles/global.css';
+import ThemeToggleButton from '../src/components/ThemeToggleButton.jsx';
 ---
 
 <!DOCTYPE html>
@@ -12,6 +13,24 @@ import '../styles/global.css'
     <title>{pageTitle}</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+
+    <script is:inline>
+      const getTheme = () => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      };
+      const theme = getTheme();
+      if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    </script>
 </head>
 
 <body>
@@ -20,5 +39,6 @@ import '../styles/global.css'
       <slot />
     </main>
 
+    <ThemeToggleButton client:load />
 </body>
 </html>

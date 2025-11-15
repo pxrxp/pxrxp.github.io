@@ -58,7 +58,7 @@ const ReImRotExample = () => {
 
     const center = board.create('point', [0.0, 0.0], { visible: false, fixed: true });
     const circle = board.create('circle', [center, 1.0], {
-      strokeColor: 'blue',
+      strokeColor: 'lightblue',
       fixed: true
     });
 
@@ -67,7 +67,7 @@ const ReImRotExample = () => {
       circle
     ], {
       name: '',
-      color: 'black',
+      color: 'pink',
       fixed: true
     }
     );
@@ -110,7 +110,6 @@ const ReImRotExample = () => {
       }
     ], {
       fontSize: 14,
-      color: 'black',
       fixed: true,
     });
 
@@ -121,7 +120,7 @@ const ReImRotExample = () => {
       [0, 0],
       {
         name: "",
-        color: "darkorange",
+        color: "pink",
         visible: () => radio.Value() == "Polar",
         fixed: true
       }
@@ -133,7 +132,8 @@ const ReImRotExample = () => {
       {
         radius: () => radio.Value() == "Polar" ? 1 : 0,
         name: "",
-        fixed: true
+        fixed: true,
+        color: "pink"
       }
     );
 
@@ -158,7 +158,13 @@ const ReImRotExample = () => {
     ], {
       name: '. Speed',
       snapWidth: 0.01,
-      anchorY: 'bottom'
+      anchorY: 'bottom',
+      highline: {
+        strokeColor: '#666666'
+      },
+      baseline: {
+        strokeColor: '#666666'
+      }
     });
     const defaultDuration = 1200;
 

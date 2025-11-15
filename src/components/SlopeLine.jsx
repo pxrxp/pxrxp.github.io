@@ -38,15 +38,15 @@ const SlopeLine = () => {
     board.defaultAxes.x.setAttribute({ ticks: { visible: false } });
     board.defaultAxes.y.setAttribute({ ticks: { visible: false } });
 
-    const line = board.create('line', [[-1, 0], [1, 1]], { strokeColor: 'blue', strokeWidth: 2, fixed: true });
+    const line = board.create('line', [[-1, 0], [1, 1]], { strokeColor: 'lightblue', strokeWidth: 2, fixed: true });
 
-    const p1 = board.create('glider', [2, 2.2, line], { name: '', color: 'black', size: 3 });
-    const p2 = board.create('glider', [6, 4.6, line], { name: '', color: 'black', size: 3 });
+    const p1 = board.create('glider', [2, 2.2, line], { name: '', color: 'pink', size: 3 });
+    const p2 = board.create('glider', [6, 4.6, line], { name: '', color: 'pink', size: 3 });
 
     const pCorner = board.create('point', [() => p2.X(), () => p1.Y()], { visible: false });
 
     board.create('polygon', [p1, pCorner, p2], {
-        fillColor: 'orange',
+        fillColor: 'pink',
         fillOpacity: 0.3,
         borders: { strokeWidth: 0 }
     });

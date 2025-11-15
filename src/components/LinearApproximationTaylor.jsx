@@ -59,7 +59,7 @@ const LinearApproximationTaylor = () => {
     const df = x => 0.3 * x**2 - 0.5;
 
     const curve = board.create('functiongraph', [f], {
-        strokeColor: 'blue',
+        strokeColor: 'lightblue',
         strokeWidth: 2,
         fixed: true
     });
@@ -68,7 +68,7 @@ const LinearApproximationTaylor = () => {
         name: '',
         size: 3,
         face: 'o',
-        color : 'black',
+        color : 'pink',
     });
 
     const tangentLine = board.create('tangent', [tangencyPoint], {

@@ -1,8 +1,84 @@
+:root {
+  --background-color: #f4f4f4;
+  --text-color: #2c3e50;
+  --link-color: #007bff;
+  --button-bg: #ffffff;
+  --button-shadow: rgba(0, 0, 0, 0.1);
+  --table-border-color: #e0e0e0;
+  --table-header-bg: #f2f2f2;
+  --table-row-hover-bg: #f1f1f1;
+  --jsx-axis-color: #cccccc;
+  --jsx-stroke-color: #007bff;
+  --jsx-point-fill: #ffffff;
+}
+
+[data-theme='dark'] {
+  --background-color: #1a1a1a;
+  --text-color: #ecf0f1;
+  --link-color: #58a6ff;
+  --button-bg: #2c2c2c;
+  --button-shadow: rgba(0, 0, 0, 0.4);
+  --table-border-color: #444444;
+  --table-header-bg: #333333;
+  --table-row-hover-bg: #3a3a3a;
+  --jsx-axis-color: #555555;
+  --jsx-stroke-color: #58a6ff;
+  --jsx-point-fill: var(--background-color);
+}
+
+.jxgbox {
+  background-color: var(--background-color);
+  border: 1px solid var(--table-border-color);
+  border-radius: 8px;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.JXGtext {
+  color: var(--text-color) !important;
+  fill: var(--text-color) !important;
+  font-family: inherit;
+  font-weight: bold !important;
+  font-size: 12px;
+}
+
+.JXGinfobox {
+  background-color: var(--button-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--table-border-color);
+  border-radius: 6px;
+  padding: 8px 12px;
+  box-shadow: 0 2px 8px var(--button-shadow);
+  font-size: 14px;
+}
+
+/* svg path, */
+/* svg line { */
+/* stroke: var(--jsx-stroke-color); */
+/* stroke-width: 1.5px; */
+/* fill: var(--jsx-stroke-color); */
+/* } */
+
+/* .JXGaxis path, */
+/* .JXGaxis line { */
+/* stroke: var(--jsx-axis-color); */
+/* stroke-width: 5px; */
+/* } */
+
+/* svg circle, */
+/* svg ellipse { */
+/* fill: var(--jsx-point-fill); */
+/* stroke: var(--jsx-stroke-color); */
+/* stroke-width: 2px; */
+/* } */
+
 body {
-  font-family: system-ui, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   line-height: 1.6;
   margin: 0;
   padding: 0;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 main {
@@ -11,13 +87,17 @@ main {
   padding: 0 1rem;
 }
 
+a {
+  color: var(--link-color);
+}
+
 button {
   align-items: center;
-  background: #F9F9F9;
-  border: 0 solid #E2E8F0;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  background: var(--button-bg);
+  border: 0 solid var(--button-bg);
+  box-shadow: 0 4px 6px -1px var(--button-shadow), 0 2px 4px -1px var(--button-shadow);
   box-sizing: border-box;
-  color: #1A202C;
+  color: var(--text-color);
   display: inline-flex;
   font-family: Inter, sans-serif;
   font-size: 1rem;
@@ -38,7 +118,7 @@ button {
 }
 
 p {
-  margin: 0;
+  margin: 0 0 1rem 0;
 }
 
 table {
@@ -49,20 +129,50 @@ table {
 
 td,
 th {
-  padding: 8px 12px;
-  border: 1px solid #e0e0e0;
+  padding: 12px 15px;
+  border: 1px solid var(--table-border-color);
 }
 
 thead th {
-  background-color: #f2f2f2;
-  color: #333;
+  background-color: var(--table-header-bg);
   font-weight: 600;
 }
 
-tbody tr:nth-of-type(even) {
-  background-color: #f9f9f9;
+tbody tr:hover {
+  background-color: var(--table-row-hover-bg);
 }
 
-tbody tr:hover {
-  background-color: #f1f1f1;
+#theme-toggle-button {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1000;
+
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  margin: 0;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1.5rem;
+  line-height: 1;
+
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+
+  background-color: var(--button-bg);
+  color: var(--text-color);
+  border: 1px solid var(--table-border-color);
+  box-shadow: 0 4px 12px var(--button-shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#theme-toggle-button:hover {
+  transform: scale(1.1);
 }
