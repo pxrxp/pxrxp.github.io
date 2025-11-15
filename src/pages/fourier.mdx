@@ -6,6 +6,7 @@ import EqPlot from '../components/EqPlot.jsx'
 import SlopeLine from '../components/SlopeLine.jsx'
 import NumberLineMulNegOneExample from '../components/NumberLine.jsx'
 import ReImRotExample from '../components/ImaginaryRotation.jsx'
+import LinearApproximationTaylor from '../components/LinearApproximationTaylor.jsx'
 
 # Journey from Euler to 
 ## Complex Number
@@ -372,7 +373,7 @@ f(a) &= a_0 + a_1(a-a)+a_2(a-a^2)\\
 $$
 
 The approximation still has an infinite no. of terms which we can't tackle yet.
-So, let us simplify the approximation even more:
+So, let us simplify the approximation even more (*just to explore*):
 
 $$
 \begin{aligned}
@@ -404,8 +405,20 @@ So, this is actually the **equation of a straight line**.
 <br/>
 <SlopeLine client:visible/>
 <br/>
-The approximation was actually at $x = a$.&nbsp;
+---
+<br/>
+We had earlier ignored all the other terms like $a_2 (x-a)^2+a_3(x-a)^3+\ldots$.
 
+If we do this, we can only approximate the function as a line (called **tangent line**).
+
+The curviness is not approximated yet.
+<br/>
+<LinearApproximationTaylor client:visible/>
+<br/>
+Still, this approximation definitely holds near $x=a$ and **only near** $x=a$.
+<br/>
+
+But,
 $a_1|_{x=a} = \frac{f(a)-f(a)}{a-a}=\frac00=\text{undefined }$
 <br/>
 $[\because \Delta x = 0]$

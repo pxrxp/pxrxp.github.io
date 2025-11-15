@@ -49,7 +49,7 @@ const NumberLineMulNegOneExample = () => {
         fixed: true
       });
 
-    var point = board.create('glider', [5, 0, axisx], { name: '', color: 'crimson' });
+    var point = board.create('glider', [5, 0, axisx], { name: '', color: 'black' });
 
     board.create('button', [
       -20,

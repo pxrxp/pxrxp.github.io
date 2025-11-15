@@ -47,7 +47,7 @@ const EqPlot = ({
 
     if (functionsToPlot && functionsToPlot.length > 0) {
       functionsToPlot.forEach(func => {
-        board.create('functiongraph', func);
+        board.create('functiongraph', func, {strokeColor: 'blue', strokeWidth: 2});
       });
     }
 

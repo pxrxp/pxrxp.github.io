@@ -40,8 +40,8 @@ const SlopeLine = () => {
 
     const line = board.create('line', [[-1, 0], [1, 1]], { strokeColor: 'blue', strokeWidth: 2, fixed: true });
 
-    const p1 = board.create('glider', [2, 2.2, line], { name: '', color: 'crimson', size: 3 });
-    const p2 = board.create('glider', [6, 4.6, line], { name: '', color: 'crimson', size: 3 });
+    const p1 = board.create('glider', [2, 2.2, line], { name: '', color: 'black', size: 3 });
+    const p2 = board.create('glider', [6, 4.6, line], { name: '', color: 'black', size: 3 });
 
     const pCorner = board.create('point', [() => p2.X(), () => p1.Y()], { visible: false });
 

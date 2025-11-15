@@ -58,6 +58,7 @@ const ReImRotExample = () => {
 
     const center = board.create('point', [0.0, 0.0], { visible: false, fixed: true });
     const circle = board.create('circle', [center, 1.0], {
+      strokeColor: 'blue',
       fixed: true
     });
 
@@ -66,7 +67,7 @@ const ReImRotExample = () => {
       circle
     ], {
       name: '',
-      color: 'crimson',
+      color: 'black',
       fixed: true
     }
     );
@@ -109,7 +110,7 @@ const ReImRotExample = () => {
       }
     ], {
       fontSize: 14,
-      color: 'crimson',
+      color: 'black',
       fixed: true,
     });
 
