@@ -3,13 +3,14 @@ layout: '../../layouts/BlogPost.astro'
 title: 'Journey from Euler to Fourier'
 ---
 import EqPlot from '../components/EqPlot.jsx'
-import { piLabelGenerator } from '../components/EqPlot.jsx'
+import SlopeLine from '../components/SlopeLine.jsx'
 import NumberLineMulNegOneExample from '../components/NumberLine.jsx'
 import ReImRotExample from '../components/ImaginaryRotation.jsx'
 
 # Journey from Euler to 
 ## Complex Number
 <NumberLineMulNegOneExample client:visible/>
+<br/>
 This is the good and old number line. Here, we see:
 
 > Number is **multiplied by $+1$**
@@ -22,9 +23,12 @@ Number gets **reflected** to the other side.
 <br/>
 Let's see why.  First we start by acknowledging:
 
-**Reflection $\equiv$ Rotation by $\pm$180$^{\circ}$** (i.e. $\pm\pi$ rad)
-
-i.e. $-1 = 1\angle180^\circ$
+$$
+\begin{aligned}
+\text{Reflection} &\equiv \text{Rotation by} \pm180^{\circ} \text{(i.e.} \pm\pi \text{ rad)}\\
+\text{i.e.} \boldsymbol{-1} &= \boldsymbol{1\angle180^\circ}
+\end{aligned}
+$$
 <br/>
 <ReImRotExample client:visible/>
 <br/>
@@ -48,8 +52,16 @@ Let's find this "$\text{something}$": &nbsp; $x^2 = -1 \Longrightarrow x = \pm \
 Just like how numbers 0, 1, 2 are different from each other, this is also a new kinda number we have just discovered (we'll call it a *complex number*). Since we don't have any space on the number line, we put it earlier on a new axis (called *imaginary axis*). Our number line was actually a small section of the 2D *complex plane* all along. We denote this number using $i$ (*imaginary*).
 <br/>
 
-$\boldsymbol{\therefore i^2 = -1}$, &nbsp; $\boldsymbol{i = 1 \angle \frac\pi2}$
+$$
+\begin{aligned}
+\boldsymbol{\therefore i^2} &= \boldsymbol{-1}\\
+\boldsymbol{i} &= \boldsymbol{1 \angle \frac\pi2}
+\end{aligned}
+$$
 
+
+<br/>
+---
 <br/>
 $\boldsymbol{z = x + iy = r\angle \theta}$ can be defined as a **complex number** on the complex plane.
 
@@ -62,7 +74,9 @@ $y =$ imaginary part $=$ &nbsp; Im(z) or $\Im (z)$
 $r =$ distance from origin (0, 0) $ = |z| = \sqrt{x^2 + y^2}$
 
 $\theta = $ angle from X axis $=\arg(z)$
-
+<br/>
+---
+<br/>
 ## Unit circle
 Let $z = x+iy$ be any arbitrary point on the circle.
 
@@ -221,18 +235,26 @@ $$
 \sin\theta &= \cos(\theta - \frac\pi2)\\
 \end{aligned}
 $$
+---
+<br/>
 
-$\therefore$ For unit circle:
-
-$|z|=\sqrt{\cos^2\theta + \sin^2\theta}=1$
-
-$z = cos\theta + i \sin\theta$
+$$
+\begin{aligned}
+\therefore &\text{ For unit circle:}\\
+|z|&=\sqrt{\cos^2\theta + \sin^2\theta}=1\\
+z &= cos\theta + i \sin\theta
+\end{aligned}
+$$
 
 <br/>
 Generalizing,
 
-$\boldsymbol{z = r\angle\theta = r (\cos\theta + i\sin\theta)}$
+$$
+\boldsymbol{z = r\angle\theta = r (\cos\theta + i\sin\theta)}
+$$
 
+---
+<br/>
 ## Taylor Series
 We said that the cosine and sine functions did not resemble any functions we knew.
 
@@ -241,6 +263,11 @@ But we might want a method to **approximate** these functions numerically. Graph
 If we **ignore** the **periodicity** of cosine for a while, we see,
 
 $cos(x)$ resembles $1-x^2$ a liii...ttle bit, especially at the origin ($x=0$).
+<br/>
+*We've started using $x$ instead of $\theta$ but it's just a different name for the same variable,*
+
+*no connection with the $z=x+iy$*
+
 <br/>
 <details>
 <summary>How I came up with $1-x^2$</summary>
@@ -305,6 +332,8 @@ $f(0)=1-0^2 = 1 =cos(0)$
   client:visible
 />
 <br/>
+---
+<br/>
 But such method cant be used to accurately approximate. We need a more robust method.
 Let us take a **leap of faith** and just say...
 
@@ -330,3 +359,106 @@ It is a **generalization of Taylor series** (approximated at origin i.e. calcula
 
 $\boldsymbol{f(x) = a_0+a_1(x-a) + a_2(x-a)^2+\dots}$
 <br/>
+---
+<br/>
+## Derivative
+If we evaluate the approximated function $f(x)$ at $x = a$
+
+$$
+\begin{aligned}
+f(a) &= a_0 + a_1(a-a)+a_2(a-a^2)\\
+\Longrightarrow a_0 &= f(a)
+\end{aligned}
+$$
+
+The approximation still has an infinite no. of terms which we can't tackle yet.
+So, let us simplify the approximation even more:
+
+$$
+\begin{aligned}
+f(x) &= f(a) + a_1 (x-a)\\
+\\
+\Longrightarrow a_1 &= \dfrac{f(x)-f(a)}{x-a}
+\end{aligned}
+$$
+---
+<br/>
+For a *circle*,
+
+**distance** between **origin** and any **point** of circle $= \text{constant}$
+<br/>
+For a *straight line*,
+
+**steepness** $= \text{constant}$
+
+i.e. Relationship between **vertical change (rise)** and **horizontal change (run)** $= \text{constant}$ (called **Slope**)
+
+$$
+\begin{aligned}
+\text{Slope}&=\frac{\text{Rise}}{\text{Run}}&=\frac{\Delta f}{\Delta x}\\
+\\
+a_1 &= \dfrac{f(x)-f(a)}{x-a} &= \frac{\Delta f}{\Delta x}
+\end{aligned}
+$$
+So, this is actually the **equation of a straight line**.
+<br/>
+<SlopeLine client:visible/>
+<br/>
+The approximation was actually at $x = a$.&nbsp;
+
+$a_1|_{x=a} = \frac{f(a)-f(a)}{a-a}=\frac00=\text{undefined }$
+<br/>
+$[\because \Delta x = 0]$
+<br/>
+But, if $x$ is *veryy veryyy* close to a but $x\ne a$ i.e. $x\rightarrow a$:
+
+$a_1|_{x\rightarrow a} = \frac{\text{very small}}{\text{very small}}=\text{some value }$
+<br/>
+$[\because \Delta x \ne 0, \Delta x \rightarrow 0]$
+<br/>
+Example:
+
+$\frac{0.00000000000000001}{0.00000000000000002} = \frac12=0.5 \text{ (some value)}$
+
+<br/>
+---
+This is actually the **definition of a derivative**.
+$$
+\begin{aligned}
+\boldsymbol{f'(x)} \text{ or } \boldsymbol{\frac{d}{dx}f(x)} &= \boldsymbol{\lim_{\Delta x \to 0} \frac{\Delta f}{\Delta x}}
+\end{aligned}
+$$
+<br/>
+*Alternatively,*
+
+$f'(x)= \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x}$
+<br/>
+$f'(x)= \lim_{\Delta x \to 0} \frac{f(x) - f(x - \Delta x)}{\Delta x}$
+<br/>
+$f'(x)= \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x - \Delta x)}{2\Delta x}$
+
+<br/>
+
+---
+<br/>
+Now we can say,
+$a_1 = f'(a)$
+
+Two coefficients found, infinitely many remaining 🙃
+
+Let's try to generalize $f(x)$ to see if we can simplify the process.
+<br/>
+$$
+\begin{aligned}
+f(x) &= a_0+a_1(x-a) + a_2(x-a)^2+\dots\\
+&= \sum_{n=0}^\infty \text{ }a_n (x-a)^n\\
+\\
+\text{where }a_0&=f(a),\\
+a_1&=f'(a)\\
+a_2&=\text{ }?\\
+a_3&=\text{ }?\\
+&\vdots
+\end{aligned}
+$$
+
+
