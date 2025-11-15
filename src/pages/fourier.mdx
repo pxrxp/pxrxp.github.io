@@ -503,7 +503,7 @@ We are again stuck. We need to somehow evaluate $(x+\Delta x)^n$
 <br/>
 ---
 <br/>
-### Binomial Theorem
+## Permutation and Combination
 Let's start with a simple example.
 
 $$
@@ -526,28 +526,255 @@ There is only **$1$ way to combine $a$ and $a$**
 There is only **$1$ way to combine $b$ and $b$**
 
 (i.e. $b^2$)
-<br/><br/>
+<br/>
+If we manage to find the total **combinations**, we'll know the coefficients of the expanded expression too.
+<br/>
 Another example:
 
 $$
 \begin{aligned}
 (a+b)^3 &= (a+b)(a+b)(a+b)\\
-&= \textcolor{red}{aaa} + \textcolor{violet}{aab} + \textcolor{violet}{aba} + \textcolor{violet}{baa} + \textcolor{#FF9900}{abb} + \textcolor{#FF9900}{bab} + \textcolor{#FF9900}{bba} + \textcolor{#FF0099}{bbb}\\
-&= \textcolor{red}{a^3} + \textcolor{violet}{3a^2b} + \textcolor{#FF9900}{3ab^2} + \textcolor{#FF0099}{b^3}
+&= \textcolor{#DF0000}{aaa} + \textcolor{#0099FF}{aab} + \textcolor{#0099FF}{aba} + \textcolor{#0099FF}{baa} + \textcolor{green}{abb} + \textcolor{green}{bab} + \textcolor{green}{bba} + \textcolor{#FF0099}{bbb}\\
+&= \textcolor{#DF0000}{a^3} + \textcolor{#0099FF}{3a^2b} + \textcolor{green}{3ab^2} + \textcolor{#FF0099}{b^3}
 \end{aligned}
 $$
 
-Now, we need to **combine 3 letters**, but we only have $a$ and $b$.
+We got an $aaa$ because three $(a+b)$'s are multiplied together. We get three $a$'s from the three $(a+b)$'s.
 
-At least one letter will repeat.
+Now, we have three $a$'s and three $b$'s from the three $(a+b)$'s.
 
-Let us count the no. of times one of the character appears.
 
-We'll count $b$ (doesn't matter which you choose)
-<br/>
-|Letters|Count of $b$|Combinations|
+There are **three slots** that we need to **fill** using the three $a$'s and $b$'s
+|Slot 1|Slot 2|Slot 3|
 |---|---|---|
-|$a, a, a$|0|$a^3$|
-|$a, a, b$|1|$aab, aba, baa$|
-|$a, b, b$|2|$abb, bab, bba$|
-|$b, b, b$|3|$bbb$|
+|.|.|.|
+
+<br/>
+---
+<br/>
+Instead of trying to fill the slots with repeating characters $a$, $b$,
+let's try to fill the slots using separate characters A, B, C first.
+
+Let's see the decision tree for filling these slots.
+
+
+```mermaid
+
+flowchart LR
+  _(_);
+  A(A);
+  B(B);
+  C(C);
+  AB(AB);
+  AC(AC);
+  BA(BA);
+  BC(BC);
+  CA(CA);
+  CB(CB);
+  ABC(ABC);
+  ACB(ACB);
+  BAC(BAC);
+  BCA(BCA);
+  CAB(CAB);
+  CBA(CBA);
+  _ --> A & B & C;
+  A --> AB & AC;
+  B --> BA & BC;
+  C --> CA & CB;
+  AB --> ABC;
+  AC --> ACB;
+  BA --> BAC;
+  BC --> BCA;
+  CA --> CAB;
+  CB --> CBA;
+
+```
+
+#### For one slot
+There are only $3$ choices (A, B or C)
+
+#### For two slots
+There are $3\times 2=6$ choices (AB, AC, BA, BC, CA or CB)
+
+#### For three slots
+There are $3\times 2 \times 1=6$ choices (ABC, ACB, BAC, BCA, CAB or CBA)
+
+This is actually the factorial function.
+<br/>
+---
+<br/>
+**Factorial of n** can be defined as
+
+$$
+\begin{aligned}
+\boldsymbol{n!}&=\boldsymbol{n\times(n-1)!}\\
+\boldsymbol{0!}&= \boldsymbol1\\
+\\
+\text{Example: }3!&=3\times 2!\\
+&=3\times2\times1!\\
+&=3\times2\times1\times1
+\end{aligned}
+$$
+<br/>
+---
+<br/>
+No. of ways of arranging $n$ **distinct objects** into $n$ **slots** $=n!$
+
+Example:
+
+There are $3\times 2\times 1 = 3!$ ways of arranging A, B, C into 3 slots
+
+<br/>
+
+Similarly,
+
+There are $3\times 2 = \dfrac{3!}{1!}$ ways of arranging A, B, C into 2 slots
+
+There are $3 = \dfrac{3!}{2!}$ ways of arranging A, B, C into 1 slot
+
+<br/><br/>
+**Total permutations**
+
+i.e. no. of ways of arranging $n$ **distinct objects** into $r$ **slots**:
+$$
+\boldsymbol{P(n,r)=\frac{n!}{(n-r)!}}
+$$
+<br/>
+---
+<br/>
+Now, we're ready for repeating characters. This was the actual problem we were tackling.
+
+We had $3$ slots to fill using the three $a$‘s and $b$‘s from the three $(a+b)'s$
+<br/>
+Example:
+
+Using three $a$'s, we can only combine it only as $aaa = a^3$
+
+But, no. of permutations would be:
+$P(3,3)= \dfrac{3!}{(3-3)!}=6$
+
+$\because$ Formula for total **permutations** requires objects to be **distinct**.
+
+If we treat the three $a$'s as distinct ($\textcolor{#DF0000}a \textcolor{#0099FF}a \textcolor{green}a$):
+|Slot 1|Slot 2|Slot 3|
+|---|---|---|
+|$\textcolor{#DF0000}a$|$\textcolor{#0099FF}a$|$\textcolor{green}a$|
+|$\textcolor{#DF0000}a$|$\textcolor{green}a$|$\textcolor{#0099FF}a$|
+|$\textcolor{green}a$|$\textcolor{#0099FF}a$|$\textcolor{#DF0000}a$|
+|$\textcolor{green}a$|$\textcolor{#DF0000}a$|$\textcolor{#0099FF}a$|
+|$\textcolor{#0099FF}a$|$\textcolor{green}a$|$\textcolor{#DF0000}a$|
+|$\textcolor{#0099FF}a$|$\textcolor{#DF0000}a$|$\textcolor{green}a$|
+<br/>
+But in reality, the three $a$'s are not distinct.
+All of these $aaa$ are equal to $a^3$.
+<br/>
+---
+<br/>
+So, we define:
+
+**Total combinations**
+$$
+\boldsymbol{{n \choose r} \text{ or } C(n, r) = \dfrac{n!}{(n-r)!\text{ } r!}}
+$$
+<br/>
+Let's try it out.
+
+$(a+b)^3 = a^3 + 3a^2 b + 3ab^2 + b^3$
+
+From the $3a^2b$, we can say,
+there are 3 ways of combining 1 $b$ in 3 slots ($aab, aba, baa$)
+
+Verifying:
+${3 \choose 1} = \dfrac{3!}{(3-1)!\text{ } 1!} = \dfrac{3\times2\times1}{(2\times1)\times 1} = 3$
+✅
+
+<br/>
+---
+<br/>
+## Binomial Theorem
+
+$$
+\begin{aligned}
+\boldsymbol{(a+b)^n} &= \boldsymbol{\binom{n}{0}a^n + \binom{n}{1}a^{n-1}b + \dots + \binom{n}{n}b^n}\\
+\\
+&= \boldsymbol{\sum_{k = 0}^n \binom{n}{k}a^n b^{n-k}}
+\end{aligned}
+$$
+<br/>
+---
+<br/>
+
+Now, let's rewind a bit. The whole reason we got into the rabbit hole was to find an expression for the derivative of Taylor series approximation of a function $f(x)$
+
+We now know,
+$$
+\begin{aligned}
+(x+\Delta x)^n &= \binom{n}{0}x^n + \binom{n}{1}x^{n-1}\Delta x + \binom {n}{2}x^{n-1}\Delta x^2 + \ldots + \Delta x^n\\
+\\
+&= x^n + nx^{n-1}\Delta x + \binom{n}{2}x^{n-1}\Delta x^2 + \dots + \Delta x^2
+\\\\
+g'(x) &= \lim_{\Delta x\to 0}\frac{(x+\Delta x)^n - x^n}{\Delta x}\\\\
+&= \lim_{\Delta x\to 0}nx^{n-1} + \binom{n}{2}x^{n-1}\Delta x + \ldots\\\\
+&= nx^{n-1}
+\end{aligned}
+$$
+<br/><br/>
+$$
+\begin{aligned}
+\boldsymbol{\therefore \frac{d}{dx}x^n} &= \boldsymbol{nx^{n-1}}\\\\
+\boldsymbol{\therefore\frac{d}{dx}(x-a)^n} &= \boldsymbol{n(x-a)^{n-1}}
+\end{aligned}
+$$
+
+<br/>
+---
+<br/>
+Now, back to Taylor's series!
+<br/>
+$$
+\begin{aligned}
+
+ f(x) &= a_0 + a_1 (x-a) + a_2 (x-a)^2 + a_3 (x-a)^3 + \dots \\
+ \\
+ f'(x) &= 0 + a_1 + 2a_2 (x-a) + 3a_3 (x-a)^2 + \dots \\
+ \\
+ f''(x) &= 0 + 0 + 2a_2 + (3 \cdot 2)a_3 (x-a) + \dots \\
+ \\
+ f'''(x) &= 0 + 0 + 0 + (3 \cdot 2 \cdot 1)a_3 x + \dots
+\end{aligned}\\
+\vdots\\
+\text{}\\
+\left[\because \dfrac{d}{dx}\text{const} = 0\right]
+$$
+<br/>
+**Generalizing,** $n^\text{th}$ derivative of $f(x)$:
+
+$$
+\begin{aligned}
+f^{(n)}(x) = \text{ }&n!\text{ }a_n\\
+&+ (n+1)!\text{ }a_{n+1}(x-a)\\
+&+ (n+2)!\text{ }a_{n+2}(x-a)^2\\
+&+ (n+3)!\text{ }a_{n+2}(x-a)^3\\
+&+\ldots\\\\
+f^{(n)}(a) = \text{}&n!\text{ } a_n + 0 + 0 + \dots\\\\
+\Longrightarrow \boldsymbol{a_n} = &\text{ }\boldsymbol{\frac{f^(n)(a)}{n!}}
+\end{aligned}
+$$
+<br/>
+**FINALLYYYY!!!!!** 🎉
+
+We have the formula of coefficient of Taylor's expansion.
+<br/>
+---
+<br/>
+## Taylor's Series approximation of some functions
+
+$$
+\begin{aligned}
+f(x) &= \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!} (x-a)^n \\
+     &= f(a) + \frac{f'(a)}{1!}(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \frac{f'''(a)}{3!}(x-a)^3 + \ldots
+\end{aligned}
+$$
+<br/>
+$f_1(x) = cos(x)=\text{ }?$
+<br/>
