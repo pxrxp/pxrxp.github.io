@@ -3,6 +3,10 @@ layout: '../../layouts/BlogPost.astro'
 title: 'Journey from Euler to Fourier'
 ---
 import EqPlot from '../components/EqPlot.jsx'
+import TangentCos from '../components/TangentCos.jsx'
+import TangentSin from '../components/TangentSin.jsx'
+import TaylorExpansionCos from '../components/TaylorExpansionCos.jsx'
+import TaylorExpansionSin from '../components/TaylorExpansionSin.jsx'
 import SlopeLine from '../components/SlopeLine.jsx'
 import NumberLineMulNegOneExample from '../components/NumberLine.jsx'
 import ReImRotExample from '../components/ImaginaryRotation.jsx'
@@ -47,6 +51,7 @@ $$
 1\angle90^\circ \times 1 \angle 90^\circ &= 1\angle 180^\circ \\
 \end{aligned}
 $$
+
 Let's find this "$\text{something}$": &nbsp; $x^2 = -1 \Longrightarrow x = \pm \sqrt{-1} = ?$
 
 <br/>
@@ -338,11 +343,11 @@ $f(0)=1-0^2 = 1 =cos(0)$
 But such method cant be used to accurately approximate. We need a more robust method.
 Let us take a **leap of faith** and just say...
 
-$cos(x) = a_0 + a_1x + a_2x^2 + \ldots$
+$cos(x) \approx a_0 + a_1x + a_2x^2 + \ldots$
 <br/>
 
 We need to find a method that will calculate 
-$a_0 = ?$, $a_1=?$, $a_2=?$, $\ldots$
+$a_0 = ?$, $\text{ }a_1=?$, $\text{ }a_2=?$, $\text{ }\ldots$
 
 We don't have a formula or anything for $cos(x)$ yet that we could use to simplify.
 We can only **evaluate** it at **different points** using that unit circle.
@@ -356,10 +361,15 @@ For $f(x)=x^3$, the method would output $a_3 = 1, a_0 = a_1 = a_2 = a_4 = \ldots
 This is actually called **McLaurin series**.
 It is a **generalization of Taylor series** (approximated at origin i.e. calculated at $\boldsymbol{a = 0}$).
 <br/>
-**Taylor Series** approximation of a function f(x) **at point** $\boldsymbol{x = a}$ is:
+**Taylor Series expansion**  of a function f(x) **at point** $\boldsymbol{x = a}$ is:
 
 $$
-\boldsymbol{f(x) = a_0+a_1(x-a) + a_2(x-a)^2+\dots}
+\begin{aligned}
+\boldsymbol{f(x)}&= \boldsymbol{a_0}\\
+&+ \boldsymbol{a_1(x-a)}\\
+&+ \boldsymbol{a_2(x-a)^2}\\
+&+ \boldsymbol{\dots}
+\end{aligned}
 $$
 <br/>
 ---
@@ -369,7 +379,10 @@ If we evaluate the approximated function $f(x)$ at $x = a$
 
 $$
 \begin{aligned}
-f(a) &= a_0 + a_1(a-a)+a_2(a-a^2)\\
+f(a) &= a_0 \\
+&+ a_1(a-a)\\
+&+a_2(a-a)^2\\
+&+\ldots\\\\
 \Longrightarrow a_0 &= f(a)
 \end{aligned}
 $$
@@ -467,6 +480,7 @@ Two coefficients found, infinitely many remaining 🙃
 
 Let's try to generalize $f(x)$ to see if we can simplify the process.
 <br/>
+
 $$
 \begin{aligned}
 f(x) &= a_0+a_1(x-a) + a_2(x-a)^2+\dots\\
@@ -533,8 +547,11 @@ Another example:
 
 $$
 \begin{aligned}
-(a+b)^3 &= (a+b)(a+b)(a+b)\\
-&= \textcolor{#DF0000}{aaa} + \textcolor{#0099FF}{aab} + \textcolor{#0099FF}{aba} + \textcolor{#0099FF}{baa} + \textcolor{green}{abb} + \textcolor{green}{bab} + \textcolor{green}{bba} + \textcolor{#FF0099}{bbb}\\
+(a+b)^3 &= (a+b)(a+b)(a+b)\\\\
+&= \textcolor{#DF0000}{aaa}\\
+&\text{ }+ \textcolor{#0099FF}{aab} + \textcolor{#0099FF}{aba} + \textcolor{#0099FF}{baa}\\
+&\text{ }+ \textcolor{green}{abb} + \textcolor{green}{bab} + \textcolor{green}{bba}\\
+&\text{ }+ \textcolor{#FF0099}{bbb}\\\\
 &= \textcolor{#DF0000}{a^3} + \textcolor{#0099FF}{3a^2b} + \textcolor{green}{3ab^2} + \textcolor{#FF0099}{b^3}
 \end{aligned}
 $$
@@ -695,7 +712,10 @@ ${3 \choose 1} = \dfrac{3!}{(3-1)!\text{ } 1!} = \dfrac{3\times2\times1}{(2\time
 
 $$
 \begin{aligned}
-\boldsymbol{(a+b)^n} &= \boldsymbol{\binom{n}{0}a^n + \binom{n}{1}a^{n-1}b + \dots + \binom{n}{n}b^n}\\
+\boldsymbol{(a+b)^n} &= \boldsymbol{\binom{n}{0}a^n}\\
+&+ \binom{n}{1}a^{n-1}b\\
+&+ \quad\vdots\\
+&+ \binom{n}{n}b^n\\
 \\
 &= \boldsymbol{\sum_{k = 0}^n \binom{n}{k}a^n b^{n-k}}
 \end{aligned}
@@ -707,18 +727,29 @@ $$
 Now, let's rewind a bit. The whole reason we got into the rabbit hole was to find an expression for the derivative of Taylor series approximation of a function $f(x)$
 
 We now know,
+
 $$
 \begin{aligned}
-(x+\Delta x)^n &= \binom{n}{0}x^n + \binom{n}{1}x^{n-1}\Delta x + \binom {n}{2}x^{n-1}\Delta x^2 + \ldots + \Delta x^n\\
-\\
-&= x^n + nx^{n-1}\Delta x + \binom{n}{2}x^{n-1}\Delta x^2 + \dots + \Delta x^2
+(x+\Delta x)^n &= \binom{n}{0}x^n\\
+&+ \binom{n}{1}x^{n-1}\Delta x\\
+&+ \binom {n}{2}x^{n-1}\Delta x^2\\
+&+ \ldots\\
+&+ \Delta x^n\\
+\\\\
+&= x^n\\
+&+ nx^{n-1}\Delta x\\
+&+ \binom{n}{2}x^{n-1}\Delta x^2\\
+&+ \dots\\
+&+ \Delta x^2
 \\\\
 g'(x) &= \lim_{\Delta x\to 0}\frac{(x+\Delta x)^n - x^n}{\Delta x}\\\\
 &= \lim_{\Delta x\to 0}nx^{n-1} + \binom{n}{2}x^{n-1}\Delta x + \ldots\\\\
 &= nx^{n-1}
 \end{aligned}
 $$
+
 <br/><br/>
+
 $$
 \begin{aligned}
 \boldsymbol{\therefore \frac{d}{dx}x^n} &= \boldsymbol{nx^{n-1}}\\\\
@@ -731,27 +762,45 @@ $$
 <br/>
 Now, back to Taylor's series!
 <br/>
+
 $$
 \begin{aligned}
-
- f(x) &= a_0 + a_1 (x-a) + a_2 (x-a)^2 + a_3 (x-a)^3 + \dots \\
+ f(x) &= a_0\\
+&+ a_1 (x-a)\\
+&+ a_2 (x-a)^2\\
+&+ a_3 (x-a)^3\\
+&+ \dots \\
  \\
- f'(x) &= 0 + a_1 + 2a_2 (x-a) + 3a_3 (x-a)^2 + \dots \\
+ f'(x) &= 0\\
+&+ a_1\\
+&+ 2a_2 (x-a)\\
+&+ 3a_3 (x-a)^2\\
+&+ \dots \\
  \\
- f''(x) &= 0 + 0 + 2a_2 + (3 \cdot 2)a_3 (x-a) + \dots \\
+ f''(x) &= 0\\
+&+ 0\\
+&+ 2a_2\\
+&+ (3 \cdot 2)a_3 (x-a)\\
+&+ \dots \\
  \\
- f'''(x) &= 0 + 0 + 0 + (3 \cdot 2 \cdot 1)a_3 x + \dots
-\end{aligned}\\
-\vdots\\
-\text{}\\
-\left[\because \dfrac{d}{dx}\text{const} = 0\right]
+ f'''(x) &= 0\\
+&+ 0\\
+&+ 0\\
+&+ (3 \cdot 2 \cdot 1)a_3 x\\
+&+ \dots\\
+\\
+&\quad\vdots
+\\\\
+[\because \dfrac{d}{dx}&\text{const} = 0]
+\end{aligned}
 $$
+
 <br/>
 **Generalizing,** $n^\text{th}$ derivative of $f(x)$:
 
 $$
 \begin{aligned}
-f^{(n)}(x) = \text{ }&n!\text{ }a_n\\
+f^{(n)}(x) &= \text{ }n!\text{ }a_n\\
 &+ (n+1)!\text{ }a_{n+1}(x-a)\\
 &+ (n+2)!\text{ }a_{n+2}(x-a)^2\\
 &+ (n+3)!\text{ }a_{n+2}(x-a)^3\\
@@ -767,14 +816,140 @@ We have the formula of coefficient of Taylor's expansion.
 <br/>
 ---
 <br/>
-## Taylor's Series approximation of some functions
+### Final Formula for Taylor's Series
 
 $$
 \begin{aligned}
 f(x) &= \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!} (x-a)^n \\
-     &= f(a) + \frac{f'(a)}{1!}(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \frac{f'''(a)}{3!}(x-a)^3 + \ldots
+\\\\
+\therefore\boldsymbol{f(x)}    &= \boldsymbol{f(a)}\\\\
+    &+ \boldsymbol{\frac{f'(a)}{1!}(x-a)}\\\\
+    &+ \boldsymbol{\frac{f''(a)}{2!}(x-a)^2}\\\\
+    &+ \boldsymbol{\frac{f'''(a)}{3!}(x-a)^3}\\\\
+    &+ \boldsymbol{\ldots}
 \end{aligned}
 $$
+
+---
 <br/>
-$f_1(x) = cos(x)=\text{ }?$
+
+Let's try to calculate the series for some functions:
+
+$f_1(x) = \cos x=\text{ }?$
+
+$f_2(x) = \sin x=\text{ }?$
 <br/>
+But we don't know the derivatives of $f_1(x)$ or $f_2(x)$
+
+* We also **don't have a formula** for $\cos x$ or $\sin x$. That's actually what sparked the search for an approximation formula and study of Taylor's series.
+
+* **Binomial theorem isn't suitable** here.
+
+* Actually, the whole $f'(x)=\lim_{\Delta x\to 0}\frac{\Delta f}{\Delta x}$**definition method isn't suitable** here.<br/><br/>
+ $\because$ We **don't have sufficient knowledge** of **trigonometry and limits** yet.
+
+<br/>
+
+The earlier case of $f(x)=x^n$ was **too general** as **$n$ can be anything**.
+
+It's **graph** could be quite literally anything from a **straight line** to **parabola** to **some other weird shape**.
+<br/>
+
+But,
+
+for **specific functions** with a **well-defined graph** e.g. $\cos x$, $\sin x$.
+
+we can try the **graphical method** to find the **expression for derivatives**.
+<br/>
+$f'(x)$ is just the **slope of the tangent line** to the $f(x)$.
+
+<br/>
+<TangentSin client:visible/>
+<br/>
+<br/>
+<TangentCos client:visible/>
+<br/>
+
+$$
+\begin{aligned}
+\therefore\boldsymbol{\frac{d}{dx}\sin x} &= \boldsymbol{\cos x}\\
+\\
+\therefore\boldsymbol{\frac{d}{dx}\cos x} &= \boldsymbol{-\sin x}
+\end{aligned}
+$$
+
+<br/>
+---
+<br/>
+
+## Taylor's Series expansion of common functions
+
+|$f(x)$|$\cos x$|$\sin x$|
+|---:|---:|---:|
+|$f'(x)$|$-\sin x$|$\cos x$|
+|$f''(x)$|$-\cos x$|$-\sin x$|
+|$f'''(x)$|$\sin x$|$-\cos x$|
+|$f''''(x)$|$\cos x$|$\sin x$|
+|$\vdots$|$\vdots$|$\vdots$|
+
+<br/>
+
+|$f(0)$|$\cos 0 =$ **1**|$\sin 0 =$ **0**|
+|---:|---:|---:|
+|$f'(0)$|$-\sin 0 =$ **0**|$\cos 0 =$ **1**|
+|$f''(0)$|$-\cos 0 =$ **-1**|$-\sin 0 =$ **0**|
+|$f'''(0)$|$\sin 0 =$ **0**|$-\cos 0 =$ **-1**|
+|$f''''(0)$|$\cos 0 =$ **1**|$\sin 0 =$ **0**|
+|$\vdots$|$\vdots$|$\vdots$|
+
+<br/>
+
+$\therefore \cos x$ can be approximated at $x = a$ as:
+
+$\cos x \approx 1 - \dfrac{(x-a)^2}{2!} + \dfrac{(x-a)^4}{4!} - \dfrac{(x-a)^6}{6!} + \dots + \dfrac{x^{^N}}{N!} \text{ }$ [N is even]
+
+<br/>
+
+$\therefore \sin x$ can be approximated at $x = a$ as:
+
+$\sin x = x - \dfrac{(x-a)^3}{3!} + \dfrac{(x-a)^5}{5!} - \dfrac{(x-a)^7}{7!} + \dots + \dfrac{x^{^N}}{N!} \text{ }$ [N is odd]
+
+<br/><br/>
+
+<br/>
+<TaylorExpansionCos client:visible/>
+<br/>
+
+<br/>
+<TaylorExpansionSin client:visible/>
+<br/>
+
+<br/>
+**Higher the no. of terms**, the **more accurate** the approximation will be **around** the point $x=a$.
+
+If we **approximate** near **origin**, **both sides** (+x, -x) can be **equally captured**.
+
+<br/>
+
+$\therefore\text{ }$ If the no. of terms $ \to \infty$ and we approximate near origin i.e. $a = 0$,
+
+* $\cos x=$ Taylor series approximation of $\cos x$
+* $\sin x=$ Taylor series approximation of $\sin x$
+
+<br/>
+🥳 **NOW, WE FINALLY HAVE THE FORMULA FOR $\cos x$ AND $\sin x$ !!!**
+
+$$
+\begin{aligned}
+\therefore \boldsymbol{\cos x} &= \boldsymbol{1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \dots} \\
+\\
+\therefore \boldsymbol{\sin x} &= \boldsymbol{x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \dots}
+\end{aligned}
+$$
+
+<br/>
+---
+<br/>
+
+<br/>
+

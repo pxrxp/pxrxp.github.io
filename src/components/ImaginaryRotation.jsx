@@ -156,7 +156,7 @@ const ReImRotExample = () => {
       [0.6, 1.15],
       [0.01, 1, 3]
     ], {
-      name: '. Speed',
+      name: '· Speed',
       snapWidth: 0.01,
       anchorY: 'bottom',
       highline: {
