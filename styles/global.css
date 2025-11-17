@@ -51,26 +51,6 @@
   font-size: 14px;
 }
 
-/* svg path, */
-/* svg line { */
-/* stroke: var(--jsx-stroke-color); */
-/* stroke-width: 1.5px; */
-/* fill: var(--jsx-stroke-color); */
-/* } */
-
-/* .JXGaxis path, */
-/* .JXGaxis line { */
-/* stroke: var(--jsx-axis-color); */
-/* stroke-width: 5px; */
-/* } */
-
-/* svg circle, */
-/* svg ellipse { */
-/* fill: var(--jsx-point-fill); */
-/* stroke: var(--jsx-stroke-color); */
-/* stroke-width: 2px; */
-/* } */
-
 body {
   background-color: var(--background-color);
   color: var(--text-color);
@@ -143,10 +123,8 @@ tbody tr:hover {
   background-color: var(--table-row-hover-bg);
 }
 
-#theme-toggle-button {
+.ui-button {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
   z-index: 1000;
 
   width: 50px;
@@ -174,6 +152,16 @@ tbody tr:hover {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-#theme-toggle-button:hover {
+.ui-button:hover {
   transform: scale(1.1);
+}
+
+#theme-toggle-button {
+  bottom: 2rem;
+  right: 2rem;
+}
+
+#home-button {
+  bottom: 6rem;
+  right: 2rem;
 }

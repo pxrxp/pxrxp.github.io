@@ -90,7 +90,7 @@ $$
 \\
 45^\circ &\equiv \frac\pi4 \text{ rad}\\
 \\
-&\;\;\vdots
+{}&\;\;\vdots
 \end{aligned}
 $$
 (*Also it has to be the circle **below**, not some random circle. It's just defined that way.*)
@@ -199,7 +199,7 @@ $f_1(\theta)=\cos(\theta)$ and $f_2(\theta)=\sin(\theta)$
     maxHeight: '200px'
   }}
   boardConfig={{
-    boundingbox: [-3*Math.PI-0.18, 1.5, 3*Math.PI+0.36, -1.5],
+    boundingbox: [-3*Math.PI, 1.8, 3*Math.PI, -1.8],
     axis: true,
     fixed: true,
     showCopyright: false,
@@ -213,23 +213,25 @@ $f_1(\theta)=\cos(\theta)$ and $f_2(\theta)=\sin(\theta)$
                 anchorX: 'right'
             },
             ticks: {
-                minTicksDistance: 0,
-                minorTicks:4,
-                ticksDistance: 3,
                 scale: Math.PI,
                 scaleSymbol: 'π',
-                insertTicks: true
+                insertTicks: false,
+                ticksDistance: 1,
             }
         },
         y: {
             name: 'cos(θ)',
             withLabel: true,
             ticks: {
-              ticksDistance: 0.5
+              ticksDistance: 1,
+              insertTicks: false,
+              label: {
+                offset: [-18, 0]
+              }
             },
             label: {
                 position: 'rt',
-                offset: [-50, 5],
+                offset: [-55, 5],
                 anchorY: 'top'
             }
         }
@@ -244,7 +246,7 @@ $f_1(\theta)=\cos(\theta)$ and $f_2(\theta)=\sin(\theta)$
     maxHeight: '200px'
   }}
   boardConfig={{
-    boundingbox: [-3*Math.PI-0.18, 1.5, 3*Math.PI+0.36, -1.5],
+    boundingbox: [-3*Math.PI, 1.8, 3*Math.PI, -1.8],
     axis: true,
     fixed: true,
     showCopyright: false,
@@ -254,27 +256,29 @@ $f_1(\theta)=\cos(\theta)$ and $f_2(\theta)=\sin(\theta)$
             withLabel: true,
             label: {
                 position: 'rt',
-                offset: [5, 15],
+                offset: [5, -15],
                 anchorX: 'right'
             },
             ticks: {
-                minTicksDistance: 0,
-                minorTicks:4,
-                ticksDistance: 3,
                 scale: Math.PI,
                 scaleSymbol: 'π',
-                insertTicks: true
+                insertTicks: false,
+                ticksDistance: 1,
+                label: {
+                  offset: [0, -17]
+                }
             }
         },
         y: {
             name: 'sin(θ)',
             withLabel: true,
             ticks: {
-              ticksDistance: 0.5
+              ticksDistance: 1,
+              insertTicks: false,
             },
             label: {
                 position: 'rt',
-                offset: [-50, 5],
+                offset: [-55, 5],
                 anchorY: 'top'
             }
         }
@@ -288,8 +292,8 @@ $f_1(\theta)=\cos(\theta)$ and $f_2(\theta)=\sin(\theta)$
 
 $$
 \begin{aligned}
-\sin(\theta \pm 2\pi) = \sin(\theta)\\
-\cos(\theta \pm 2\pi) = \cos(\theta)
+\sin(\theta \pm 2\pi) &= \sin(\theta)\\
+\cos(\theta \pm 2\pi) &= \cos(\theta)
 \end{aligned}
 $$
 So, these are called **periodic functions**
@@ -319,7 +323,7 @@ $$
 Generalizing,
 
 $$
-\boldsymbol{z = r\angle\theta = r (\cos\theta + i\sin\theta)}
+\boldsymbol{z} = \boldsymbol{r\angle\theta = r (\cos\theta + i\sin\theta)}
 $$
 
 ---
@@ -362,7 +366,7 @@ $f(0)=1-0^2 = 1 =cos(0)$
     maxHeight: '200px'
   }}
   boardConfig={{
-    boundingbox: [-Math.PI-0.18, 2.2, Math.PI+0.36, -5.5],
+    boundingbox: [-Math.PI-0.18, 2.2, Math.PI+0.36, -2.5],
     axis: true,
     fixed: true,
     showCopyright: false,
@@ -376,19 +380,18 @@ $f(0)=1-0^2 = 1 =cos(0)$
                 anchorX: 'right'
             },
             ticks: {
-                minTicksDistance: 0,
-                minorTicks:4,
-                ticksDistance: 3,
+                ticksDistance: 0.5,
                 scale: Math.PI,
                 scaleSymbol: 'π',
-                insertTicks: true
+                insertTicks: false
             }
         },
         y: {
             name: '1-x^2',
             withLabel: true,
             ticks: {
-              ticksDistance: 0.5
+                ticksDistance: 1,
+                insertTicks: false
             },
             label: {
                 position: 'rt',
@@ -448,9 +451,9 @@ Maclaurin series is actually a **generalization of Taylor series**.
 $$
 \begin{aligned}
 \boldsymbol{f(x)}&= \boldsymbol{a_0}\\
-&+ \boldsymbol{a_1(x-a)}\\
-&+ \boldsymbol{a_2(x-a)^2}\\
-&+ \boldsymbol{\dots}
+{}&+ \boldsymbol{a_1(x-a)}\\
+{}&+ \boldsymbol{a_2(x-a)^2}\\
+{}&+ \boldsymbol{\dots}
 \end{aligned}
 $$
 <br/>
@@ -462,9 +465,9 @@ If we evaluate the approximated function $f(x)$ at $x = a$
 $$
 \begin{aligned}
 f(a) &= a_0 \\
-&+ a_1(a-a)\\
-&+a_2(a-a)^2\\
-&+\ldots\\\\
+{}&+ a_1(a-a)\\
+{}&+a_2(a-a)^2\\
+{}&+\ldots\\\\
 \Longrightarrow a_0 &= f(a)
 \end{aligned}
 $$
@@ -569,16 +572,16 @@ Let's try to generalize $f(x)$ to see if we can simplify the process.
 $$
 \begin{aligned}
 f(x) &= a_0\\
-&+a_1(x-a)\\
-&+ a_2(x-a)^2\\
-&+\dots\\\\
-&= \sum_{n=0}^\infty \text{ }a_n (x-a)^n\\
+{}&+a_1(x-a)\\
+{}&+ a_2(x-a)^2\\
+{}&+\dots\\\\
+{}&= \sum_{n=0}^\infty \text{ }a_n (x-a)^n\\
 \\
 \text{where }a_0&=f(a),\\
 a_1&=f'(a)\\
 a_2&=\text{ }?\\
 a_3&=\text{ }?\\
-&\vdots
+{}&\vdots
 \end{aligned}
 $$
 
@@ -598,7 +601,7 @@ $$
 g(x) &= x^n\\
 \Longrightarrow g'(x) &= \lim_{\Delta x \to 0} \frac{g(x+\Delta x)-g(x)}{\Delta x}\\
 \\
-&= \lim_{\Delta x \to 0} \frac{(x+\Delta x)^n - x^n}{\Delta x}
+{}&= \lim_{\Delta x \to 0} \frac{(x+\Delta x)^n - x^n}{\Delta x}
 \end{aligned}
 $$
 We are again stuck. We need to somehow evaluate $(x+\Delta x)^n$
@@ -611,8 +614,8 @@ Let's start with a simple example.
 $$
 \begin{aligned}
 (a+b)^2 &= (a+b)(a+b)\\
-&= \textcolor{darkred}{aa} + \textcolor{#0099FF}{ab} + \textcolor{#0099FF}{ba} + \textcolor{green}{bb}\\
-&= \textcolor{darkred}{a^2} + \textcolor{#0099FF}{2ab} + \textcolor{green}{b^2}
+{}&= \textcolor{darkred}{aa} + \textcolor{#0099FF}{ab} + \textcolor{#0099FF}{ba} + \textcolor{green}{bb}\\
+{}&= \textcolor{darkred}{a^2} + \textcolor{#0099FF}{2ab} + \textcolor{green}{b^2}
 \end{aligned}
 $$
 
@@ -636,11 +639,11 @@ Another example:
 $$
 \begin{aligned}
 (a+b)^3 &= (a+b)(a+b)(a+b)\\\\
-&= \textcolor{#DF0000}{aaa}\\
-&\text{ }+ \textcolor{#0099FF}{aab} + \textcolor{#0099FF}{aba} + \textcolor{#0099FF}{baa}\\
-&\text{ }+ \textcolor{green}{abb} + \textcolor{green}{bab} + \textcolor{green}{bba}\\
-&\text{ }+ \textcolor{#FF0099}{bbb}\\\\
-&= \textcolor{#DF0000}{a^3} + \textcolor{#0099FF}{3a^2b} + \textcolor{green}{3ab^2} + \textcolor{#FF0099}{b^3}
+{}&= \textcolor{#DF0000}{aaa}\\
+{}&\text{ }+ \textcolor{#0099FF}{aab} + \textcolor{#0099FF}{aba} + \textcolor{#0099FF}{baa}\\
+{}&\text{ }+ \textcolor{green}{abb} + \textcolor{green}{bab} + \textcolor{green}{bba}\\
+{}&\text{ }+ \textcolor{#FF0099}{bbb}\\\\
+{}&= \textcolor{#DF0000}{a^3} + \textcolor{#0099FF}{3a^2b} + \textcolor{green}{3ab^2} + \textcolor{#FF0099}{b^3}
 \end{aligned}
 $$
 
@@ -718,8 +721,8 @@ $$
 \boldsymbol{0!}&= \boldsymbol1\\
 \\
 \text{Example: }3!&=3\times 2!\\
-&=3\times2\times1!\\
-&=3\times2\times1\times1
+{}&=3\times2\times1!\\
+{}&=3\times2\times1\times1
 \end{aligned}
 $$
 <br/>
@@ -806,11 +809,11 @@ ${3 \choose 1} = \dfrac{3!}{(3-1)!\text{ } 1!} = \dfrac{3\times2\times1}{(2\time
 $$
 \begin{aligned}
 \boldsymbol{(a+b)^n} &= \boldsymbol{\binom{n}{0}a^n}\\
-&+ \binom{n}{1}a^{n-1}b\\
-&+ \quad\vdots\\
-&+ \binom{n}{n}b^n\\
+{}&+ \binom{n}{1}a^{n-1}b\\
+{}&+ \quad\vdots\\
+{}&+ \binom{n}{n}b^n\\
 \\
-&= \boldsymbol{\sum_{k = 0}^n \binom{n}{k}a^n b^{n-k}}
+{}&= \boldsymbol{\sum_{k = 0}^n \binom{n}{k}a^n b^{n-k}}
 \end{aligned}
 $$
 <br/>
@@ -825,22 +828,22 @@ We now know,
 $$
 \begin{aligned}
 (x+\Delta x)^n &= \binom{n}{0}x^n\\
-&+ \binom{n}{1}x^{n-1}\Delta x\\
-&+ \binom {n}{2}x^{n-1}\Delta x^2\\
-&+ \ldots\\
-&+ \Delta x^n\\
+{}&+ \binom{n}{1}x^{n-1}\Delta x\\
+{}&+ \binom {n}{2}x^{n-1}\Delta x^2\\
+{}&+ \ldots\\
+{}&+ \Delta x^n\\
 \\\\
-&= x^n\\
-&+ nx^{n-1}\Delta x\\
-&+ \binom{n}{2}x^{n-1}\Delta x^2\\
-&+ \dots\\
-&+ \Delta x^2
+{}&= x^n\\
+{}&+ nx^{n-1}\Delta x\\
+{}&+ \binom{n}{2}x^{n-1}\Delta x^2\\
+{}&+ \dots\\
+{}&+ \Delta x^2
 \\\\
 g'(x) &= \lim_{\Delta x\to 0}\frac{(x+\Delta x)^n - x^n}{\Delta x}\\\\
-&= \lim_{\Delta x\to 0}\quad nx^{n-1}\\
-&\qquad\qquad+ \binom{n}{2}x^{n-1}\Delta x\\
-&\qquad\qquad+ \ldots\\\\
-&= nx^{n-1}
+{}&= \lim_{\Delta x\to 0}\quad nx^{n-1}\\
+{}&\qquad\qquad+ \binom{n}{2}x^{n-1}\Delta x\\
+{}&\qquad\qquad+ \ldots\\\\
+{}&= nx^{n-1}
 \end{aligned}
 $$
 
@@ -867,30 +870,30 @@ We can now apply the power rule to calculate the derivatives:
 $$
 \begin{aligned}
  f(x) &= a_0\\
-&+ a_1 (x-a)\\
-&+ a_2 (x-a)^2\\
-&+ a_3 (x-a)^3\\
-&+ \dots \\
+{}&+ a_1 (x-a)\\
+{}&+ a_2 (x-a)^2\\
+{}&+ a_3 (x-a)^3\\
+{}&+ \dots \\
  \\
  f'(x) &= 0\\
-&+ a_1\\
-&+ 2a_2 (x-a)\\
-&+ 3a_3 (x-a)^2\\
-&+ \dots \\
+{}&+ a_1\\
+{}&+ 2a_2 (x-a)\\
+{}&+ 3a_3 (x-a)^2\\
+{}&+ \dots \\
  \\
  f''(x) &= 0\\
-&+ 0\\
-&+ 2a_2\\
-&+ (3 \cdot 2)a_3 (x-a)\\
-&+ \dots \\
+{}&+ 0\\
+{}&+ 2a_2\\
+{}&+ (3 \cdot 2)a_3 (x-a)\\
+{}&+ \dots \\
  \\
  f'''(x) &= 0\\
-&+ 0\\
-&+ 0\\
-&+ (3 \cdot 2 \cdot 1)a_3 x\\
-&+ \dots\\
+{}&+ 0\\
+{}&+ 0\\
+{}&+ (3 \cdot 2 \cdot 1)a_3 x\\
+{}&+ \dots\\
 \\
-&\quad\vdots
+{}&\quad\vdots
 \\\\
 [\because \dfrac{d}{dx}&\text{const} = 0]
 \end{aligned}
@@ -902,10 +905,10 @@ $$
 $$
 \begin{aligned}
 f^{(n)}(x) &= \text{ }n!\text{ }a_n\\
-&+ (n+1)!\text{ }a_{n+1}(x-a)\\
-&+ (n+2)!\text{ }a_{n+2}(x-a)^2\\
-&+ (n+3)!\text{ }a_{n+2}(x-a)^3\\
-&+\ldots\\\\
+{}&+ (n+1)!\text{ }a_{n+1}(x-a)\\
+{}&+ (n+2)!\text{ }a_{n+2}(x-a)^2\\
+{}&+ (n+3)!\text{ }a_{n+2}(x-a)^3\\
+{}&+\ldots\\\\
 f^{(n)}(a) = \text{}&n!\text{ } a_n + 0 + 0 + \dots\\\\
 \Longrightarrow \boldsymbol{a_n} = &\text{ }\boldsymbol{\frac{f^(n)(a)}{n!}}
 \end{aligned}
@@ -930,10 +933,10 @@ $$
 f(x) &= \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!} (x-a)^n \\
 \\\\
 \therefore\boldsymbol{f(x)}    &= \boldsymbol{f(a)}\\\\
-    &+ \boldsymbol{\frac{f'(a)}{1!}(x-a)}\\\\
-    &+ \boldsymbol{\frac{f''(a)}{2!}(x-a)^2}\\\\
-    &+ \boldsymbol{\frac{f'''(a)}{3!}(x-a)^3}\\\\
-    &+ \boldsymbol{\ldots}
+    {}&+ \boldsymbol{\frac{f'(a)}{1!}(x-a)}\\\\
+    {}&+ \boldsymbol{\frac{f''(a)}{2!}(x-a)^2}\\\\
+    {}&+ \boldsymbol{\frac{f'''(a)}{3!}(x-a)^3}\\\\
+    {}&+ \boldsymbol{\ldots}
 \end{aligned}
 $$
 
@@ -1012,15 +1015,32 @@ $$
 
 <br/>
 
-$\therefore \cos x$ can be approximated at $x = a$ as:
-
-$\cos x \approx 1 - \dfrac{(x-a)^2}{2!} + \dfrac{(x-a)^4}{4!} - \dfrac{(x-a)^6}{6!} + \dots + \dfrac{x^{^N}}{N!} \text{ }$ [N is even]
+$\therefore \cos x$ and $\sin x$ can be approximated at $x = a$ as:
+<br/>
+$$
+\begin{aligned}
+\cos x \approx 1
+ &- \dfrac{(x-a)^2}{2!} \\
+ {}& + \dfrac{(x-a)^4}{4!} \\
+ {}& - \dfrac{(x-a)^6}{6!} \\
+ {}& + \quad + \dots +\quad+ \dfrac{x^N}{N!}\\\\
+\text{[N }&\text{is even]}
+\end{aligned}
+$$
 
 <br/>
 
-$\therefore \sin x$ can be approximated at $x = a$ as:
-
-$\sin x = x - \dfrac{(x-a)^3}{3!} + \dfrac{(x-a)^5}{5!} - \dfrac{(x-a)^7}{7!} + \dots + \dfrac{x^{^N}}{N!} \text{ }$ [N is odd]
+$$
+\begin{aligned}
+\sin x \approx x
+           & - \dfrac{(x-a)^3}{3!} \\
+           & + \dfrac{(x-a)^5}{5!} \\
+           & - \dfrac{(x-a)^7}{7!} \\
+           & +\quad \dots\quad
+            + \dfrac{x^N}{N!}\\\\
+\text{[N }&\text{is odd]}
+\end{aligned}
+$$
 
 <br/><br/>
 
@@ -1065,15 +1085,15 @@ $$
 \begin{aligned}
 z &= \cos \theta + i \sin \theta\\
 \\
-&= \left[1 - \frac{\theta^2}{2!} + \frac{\theta^4}{4!} - \frac{\theta^6}{6!} + \dots\right]\\
-&+ i\left[x - \frac{\theta^3}{3!} + \frac{\theta^5}{5!} - \frac{\theta^7}{7!} + \dots\right]\\
+{}&= \left[1 - \frac{\theta^2}{2!} + \frac{\theta^4}{4!} - \frac{\theta^6}{6!} + \dots\right]\\
+{}&+ i\left[x - \frac{\theta^3}{3!} + \frac{\theta^5}{5!} - \frac{\theta^7}{7!} + \dots\right]\\
 \\\\
-&= \textcolor{hotpink}1\;\frac{\theta^0}{0!}
+{}&= \textcolor{hotpink}1\;\frac{\theta^0}{0!}
 \textcolor{brown}+\textcolor{brown}i\;\frac{\theta^1}{1!}
 \textcolor{green}{-1} \frac{\theta^2}{2!}
 \textcolor{gray}{-i}\;\frac{\theta^3}{3!}\\
 \\
-&\;\textcolor{hotpink}{+1}\; \frac{\theta^4}{4!}
+{}&\;\textcolor{hotpink}{+1}\; \frac{\theta^4}{4!}
 \textcolor{brown}{+ i}\;\frac{\theta^5}{5!}
 \textcolor{green}{-1} \frac{\theta^6}{6!}
 \textcolor{gray}{-i}\;\frac{\theta^7}{7!}\\
@@ -1102,7 +1122,7 @@ $\Longrightarrow i^n = \begin{cases}
 
 $$
 \begin{aligned}
-z = \frac{(i\theta)^0}{0!} + \frac{(i\theta)^1}{1!} + \frac{(i\theta)^2}{2!} + \ldots
+z &= \frac{(i\theta)^0}{0!} + \frac{(i\theta)^1}{1!} + \frac{(i\theta)^2}{2!} + \ldots
 \end{aligned}
 $$
 
@@ -1136,10 +1156,11 @@ Example:
 <br/>
 <br/>
 From graph, we can see:
+
 $$
 \begin{aligned}
 \boldsymbol{\exp (x)} &= \boldsymbol{2.71828^x}\\
-&= \boldsymbol{e^x}
+{}&= \boldsymbol{e^x}
 \end{aligned}
 $$
 

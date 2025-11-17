@@ -1,26 +1,34 @@
 import { useState, useEffect } from 'react';
 
 const ThemeToggleButton = () => {
-  const [theme, setTheme] = useState(() => {
-    if (typeof localStorage !== 'undefined') {
-      return localStorage.getItem('theme') || 'light';
-    }
-    return 'light';
-  });
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-    document.documentElement.setAttribute('data-theme', newTheme);
-  };
+  const [theme, setTheme] = useState('light');
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (isMounted) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+    }
+  }, [theme, isMounted]);
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
+
+  if (!isMounted) {
+    return (
+      <></>
+    );
+  }
 
   return (
-    <button onClick={toggleTheme} id="theme-toggle-button" aria-label="Toggle theme">
+    <button onClick={toggleTheme} class="ui-button" id="theme-toggle-button" aria-label="Toggle theme">
       {theme === 'light' ? '🌙' : '☀️'}
     </button>
   );
