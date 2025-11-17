@@ -33,10 +33,10 @@ const HelixCosSin = () => {
     const masterSlider = board.create('slider', [
       [-1.5, -1.3],
       [-0.5, -1.3],
-      [0, 1, 5]
+      [0, 2, 9]
     ], {
       label: {
-        visible: false,
+        visible: true,
       },
       anchorY: 'bottom',
       highline: {
@@ -48,89 +48,125 @@ const HelixCosSin = () => {
     });
 
     const figureName = sliderVal => {
-      let slider = Math.min(Math.max(sliderVal, 0), 5);
-      if (slider >= 4.74) {
-        return "sin(x)";
-      } else if (slider >= 2.97) {
+      let slider = Math.min(Math.max(sliderVal, 0), 8);
+      if (slider >= 7.67) {
+        return "cos(x)";
+      } else if (slider >= 6.00) {
         return "Helix";
-      } else if (slider >= 2) {
+      } else if (slider >= 4.00) {
         return "Unit Circle";
-      } else if (slider >= 0.19) {
+      } else if (slider >= 1.39) {
         return "Helix";
       } else {
-        return "cos(x)"
+        return "sin(x)"
       }
     }
 
     board.create('text', [
       0.5, -1.3,
-      () => '<span style="color:hotpink">'+figureName(masterSlider.Value())+'</span>'
+      () => '<span style="color:hotpink">' + figureName(masterSlider.Value()) + '</span>'
     ], {
       fontSize: 18,
       fixed: true,
     });
 
     const azimuth = sliderVal => {
-      let slider = Math.min(Math.max(sliderVal, 0), 5);
+      let slider = Math.min(Math.max(sliderVal, 0), 8);
       let s, start, end;
-      if (slider > 4) {
-        s = slider - 4;
+      if (slider > 7) {
+        s = slider - 7;
         start = 6.56;
         end = 6.28;
-      } else if (slider > 3) {
-        s = slider - 3;
+      } else if (slider > 6) {
+        s = slider - 6;
         start = 6.46;
         end = 6.56;
-      } else if (slider > 2) {
-        s = slider - 2;
+      } else if (slider > 5) {
+        s = slider - 5;
         start = 4.88;
         end = 6.46;
-      } else if (slider > 1) {
-        s = slider - 1;
+      } else if (slider > 4) {
+        s = slider - 4;
+        start = 4.88;
+        end = 4.88;
+      } else if (slider > 3) {
+        s = slider - 3;
         start = 4.98;
         end = 4.88;
+      } else if (slider > 2) {
+        s = slider - 2;
+        start = 4.98;
+        end = 4.98;
+      } else if (slider > 1) {
+        s = slider - 1;
+        start = 4.71;
+        end = 4.98;
       } else {
         s = slider;
         start = 4.71;
-        end = 4.98;
+        end = 4.71;
       }
       return start + (end - start) * s;
     };
 
     const elevation = sliderVal => {
-      let slider = Math.min(Math.max(sliderVal, 0), 5);
+      let slider = Math.min(Math.max(sliderVal, 0), 8);
       let s, start, end;
-      if (slider > 4) {
-        s = slider - 4;
+      if (slider > 7) {
+        s = slider - 7;
         start = 0.67;
         end = 0.00;
-      } else if (slider > 3) {
-        s = slider - 3;
+      } else if (slider > 6) {
+        s = slider - 6;
         start = 1.57;
         end = 0.67;
-      } else if (slider > 2) {
-        s = slider - 2;
+      } else if (slider > 5) {
+        s = slider - 5;
         start = 1.57;
         end = 1.57;
-      } else if (slider > 1) {
-        s = slider - 1;
+      } else if (slider > 4) {
+        s = slider - 4;
+        start = 1.57;
+        end = 1.57;
+      } else if (slider > 3) {
+        s = slider - 3;
         start = 0.67;
         end = 1.57;
+      } else if (slider > 2) {
+        s = slider - 2;
+        start = 0.67;
+        end = 0.67;
+      } else if (slider > 1) {
+        s = slider - 1;
+        start = 0.00;
+        end = 0.67;
       } else {
         s = slider;
         start = 0.00;
-        end = 0.67;
+        end = 0.00;
       }
       return start + (end - start) * s;
     };
 
     const banking = sliderVal => {
-      let slider = Math.min(Math.max(sliderVal, 0), 5);
+      let slider = Math.min(Math.max(sliderVal, 0), 8);
       let s, start, end;
-      if (slider > 4) {
-        s = slider - 4;
+      if (slider > 7) {
+        s = slider - 7;
         start = 1.75;
         end = 1.575;
+      } else if (slider > 6) {
+        s = slider - 6;
+        start = 1.75;
+        end = 1.75;
+      } else if (slider > 5) {
+        s = slider - 5;
+        start = 1.75;
+        end = 1.75;
+      } else if (slider > 4) {
+        s = slider - 4;
+        start = 1.75;
+        end = 1.75;
       } else if (slider > 3) {
         s = slider - 3;
         start = 1.75;
@@ -141,12 +177,12 @@ const HelixCosSin = () => {
         end = 1.75;
       } else if (slider > 1) {
         s = slider - 1;
-        start = 1.75;
+        start = 1.575;
         end = 1.75;
       } else {
         s = slider;
         start = 1.575;
-        end = 1.75;
+        end = 1.575;
       }
       return start + (end - start) * s;
     };
