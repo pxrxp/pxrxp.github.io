@@ -1,21 +1,22 @@
 ---
 layout: '../../layouts/BlogPost.astro'
-title: 'Journey from Euler to Fourier'
+title: "Math's Most Beautiful Equation for the Unconvinced"
 ---
-import EqPlot from '../components/EqPlot.jsx'
-import ExpX from '../components/ExpX.jsx'
-import HelixCosSin from '../components/HelixCosSin.jsx'
-import IotaCycle from '../components/IotaCycle.jsx'
-import TangentCos from '../components/TangentCos.jsx'
-import TangentSin from '../components/TangentSin.jsx'
-import TaylorExpansionCos from '../components/TaylorExpansionCos.jsx'
-import TaylorExpansionSin from '../components/TaylorExpansionSin.jsx'
-import SlopeLine from '../components/SlopeLine.jsx'
-import NumberLineMulNegOne from '../components/NumberLine.jsx'
-import ReImRot from '../components/ImaginaryRotation.jsx'
-import LinearApproximationTaylor from '../components/LinearApproximationTaylor.jsx'
+import EqPlot from '../components/MostBeautifulEquation/EqPlot.jsx'
+import ExpX from '../components/MostBeautifulEquation/ExpX.jsx'
+import NumberLineFunction from '../components/MostBeautifulEquation/NumberLineFunction.jsx'
+import HelixCosSin from '../components/MostBeautifulEquation/HelixCosSin.jsx'
+import IotaCycle from '../components/MostBeautifulEquation/IotaCycle.jsx'
+import TangentCos from '../components/MostBeautifulEquation/TangentCos.jsx'
+import TangentSin from '../components/MostBeautifulEquation/TangentSin.jsx'
+import TaylorExpansionCos from '../components/MostBeautifulEquation/TaylorExpansionCos.jsx'
+import TaylorExpansionSin from '../components/MostBeautifulEquation/TaylorExpansionSin.jsx'
+import SlopeLine from '../components/MostBeautifulEquation/SlopeLine.jsx'
+import NumberLineMulNegOne from '../components/MostBeautifulEquation/NumberLine.jsx'
+import ReImRot from '../components/MostBeautifulEquation/ImaginaryRotation.jsx'
+import LinearApproximationTaylor from '../components/MostBeautifulEquation/LinearApproximationTaylor.jsx'
 
-# Journey from Euler to Fourier
+# Math's Most Beautiful Equation for the Unconvinced
 
 ## Table of Contents
 
@@ -43,7 +44,7 @@ import LinearApproximationTaylor from '../components/LinearApproximationTaylor.j
   - [Finding Expressions for cos(x), sin(x)](#finding-expressions-for-cosx-sinx)
 - [Exponential Function](#exponential-function)
   - [Euler's Number](#eulers-number)
-  - [Euler's Identity](#eulers-identity)
+- [The Final Chapter](#the-final-chapter)
 
 ## Complex Numbers
 <NumberLineMulNegOne client:visible/>
@@ -1144,49 +1145,86 @@ $$
 
 The constant $e = 2.7182812824\ldots$ is called **Euler's number** or **Napier's number**.
 <br/>
+$\therefore$ The earlier expression for some arbitrary point $z$ on the unit circle in the imaginary plane can be written as:
+$$
+z = \exp(i\theta) = e^{i\theta}
+$$
 ---
 <br/>
-### Euler's Identity
-$$
-\therefore\boldsymbol{e^{i\theta}} = \boldsymbol{\cos (\theta) + i \sin (\theta)}
-$$
-<br/>
-$\Longrightarrow e^{i\pi}=-1$ (called the most beautiful equation in mathematics)
+## The Final Chapter
 
-(Alternative way of writing $1\angle 180^\circ= -1$)
-<br/>
----
-<br/>
-Let's play a game! Guess which function is this.
+It's been quite the road, but we've almost reached our destination! As the journey is almost over, let's play a game! Guess which function is this. Gotta play fair, don't press the button!
+<NumberLineFunction client:visible/><br/>
 <details>
 <summary>Reveal the answer.</summary>
-It's actually $f(x) = x$.
+* $f(x)=x$
+* $f(x)=\sin x$
+* $f(x)=x^2$
+* $f(x)=x^3$
+* $f(x)=\cos x$
+</details>
+<br/>
+Press the button to check if you don't believe me. You haven't already pressed it, have you? 🤨
 
-Congrats, if you got it, because I wouldn't.
+Anyways, congrats, if you got it, because I wouldn't.
 
-From this view, $x^3$, $2x$, $1753x$, $x^7$, $x^{153}$ $\ldots$ all look the same.
+From this view, even functions like $x^5$, $2x$, $1753x$, $x^7$, $x^{153}$ $\ldots$ all would look the same as $f(x)=x$. 🤷
 <br/>
 This is because we are actually familiar with seeing $f(x) \text{ vs }x$ plots.
 
 This one is $f(x)$ only.
 We evaluated the function at many points and plotted them on a vertical number line.
-</details>
 
+<br/>
+---
 <br/>
 Guess what, we have been making the same mistake for $f(\theta)=e^{i\theta}$
 
 The unit circle was just the $f(\theta)$. We need to actually add a third axis and plot $f(\theta) \text{ vs }\theta$.
 <HelixCosSin client:visible />
-**Now, we see the full picture!**
+🤯 **Now, we see the full picture!**
 
 $f(\theta)=e^{i\theta}$ is actually a **helix**.
 * In one view, we see $\boldsymbol{\cos \theta}$.
 * In another, we see $\boldsymbol{\sin \theta}$.
 * In another, the familiar **unit circle**.
-
+<br/>
 **It's all a matter of perspective.**
+On paper, it seems like an innocent equation you might skim over, but this string of symbols, known as **Euler's Formula**, holds an incredible secret we now understand. 😌
+
+$$
+\boldsymbol{e^{i\theta} = \cos\theta + i\sin\theta}
+$$
+<br/>
+Anyways,
+
+When $\theta=180^\circ$ (i.e. $\pi\text{ rad}$),
+<br/>$\cos\theta=-1$, $\;\sin\theta=0$
+
+---
+<br/>
+<div style="font-size: 125%;">
+$$
+\boldsymbol{\therefore e^{i\pi} + 1 = 0}
+$$
+<center>**"The most beautiful equation in Mathematics !!!"**</center>
+</div>
+<br/>
+<br/>
+Its **beauty** lies in weaving the **fundamental constants of mathematics** into a single string:
+* The additive identity $0$
+* The multiplicative identity $1$
+* The fundamental circle constant $\pi$
+* The number $e$ from the heart of analysis
+* The imaginary unit $i$
+<br/>
+---
+<br/>
 <br/>
 ---
 
+**P.S.**&nbsp;&nbsp; This equation is actually equivalent to the one we started our expedition with ($1\angle 180^\circ \equiv -1$). &nbsp;We've come a full *circle*, indeed! 😉
+
+---
 <br/>
 

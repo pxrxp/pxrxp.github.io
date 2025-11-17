@@ -71,15 +71,15 @@ const ReImRot = () => {
     }
     );
 
-    window.changePlotType = () => {
+    window.updateBoard = () => {
       board.update();
     }
 
     var radio = board.create('text', [
       -1.19, -0.95,
       `
-        <input type="radio" name="plotType" value="Cartesian" onchange="window.changePlotType();" checked />Cartesian<br/>
-        <input type="radio" name="plotType" value="Polar" onchange="window.changePlotType();" />Polar<br/>
+        <input type="radio" name="plotType" value="Cartesian" onchange="window.updateBoard();" checked />Cartesian<br/>
+        <input type="radio" name="plotType" value="Polar" onchange="window.updateBoard();" />Polar<br/>
         `
     ], { fixed: true });
 

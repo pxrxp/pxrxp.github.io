@@ -165,15 +165,7 @@ const HelixCosSin = () => {
     const banking = sliderVal => {
       let slider = Math.min(Math.max(sliderVal, 0), 9);
       let s, start, end;
-      if (slider > 8) {
-        s = slider - 8;
-        start = 1.75;
-        end = 1.575;
-      } else if (slider > 7) {
-        s = slider - 7;
-        start = 1.575;
-        end = 1.75;
-      } else if (slider > 6) {
+      if (slider > 6) {
         s = slider - 6;
         start = 1.575;
         end = 1.575;

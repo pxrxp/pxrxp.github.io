@@ -89,6 +89,7 @@ main {
 
 a {
   color: var(--link-color);
+  text-decoration: none;
 }
 
 button {

@@ -59,7 +59,7 @@ const NumberLineMulNegOne = () => {
       {}
     ]);
     board.create('button', [
-      -15,
+      -12.5,
       0.8,
       '⨯ (+1)',
       () => {},

@@ -53,7 +53,7 @@ const ExpX = () => {
     const coeff = board.create('slider', [
       [-5, 5],
       [-3, 5],
-      [0, 2, 10]
+      [0, 4, 10]
     ], {
       name: '· n',
       digits: 5,
