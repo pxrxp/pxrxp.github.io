@@ -15,6 +15,12 @@ const boardConfig = {
   fixed: true,
   showCopyright: false,
   showNavigation: false,
+  pan: {
+    enabled: false
+  },
+  zoom: {
+    enabled: false
+  },
 };
 
 const HelixCosSin = () => {
@@ -253,12 +259,6 @@ const HelixCosSin = () => {
         }
       },
 
-      pan: {
-        enabled: false,
-      },
-      zoom: {
-        enabled: false,
-      },
       xPlaneFront: {
         visible: true,
         fillColor: 'violet',

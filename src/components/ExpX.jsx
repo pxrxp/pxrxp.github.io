@@ -15,6 +15,12 @@ const boardConfig = {
   fixed: true,
   showCopyright: false,
   showNavigation: false,
+  pan: {
+    enabled: false
+  },
+  zoom: {
+    enabled: false
+  },
   defaultAxes: {
     x: {
       name: 'x',

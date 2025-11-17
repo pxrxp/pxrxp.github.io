@@ -13,6 +13,12 @@ const defaultBoardConfig = {
   axis: true,
   showCopyright: false,
   showNavigation: false,
+  pan: {
+    enabled: false
+  },
+  zoom: {
+    enabled: false
+  },
 };
 
 const EqPlot = ({
