@@ -4,7 +4,7 @@ import { JSXGraph } from "jsxgraph";
 const containerStyle = {
   width: '100%',
   maxWidth: '800px',
-  maxHeight: '900px',
+  maxHeight: '600px',
   aspectRatio: '1',
   margin: 'auto',
 };
@@ -31,12 +31,12 @@ const HelixCosSin = () => {
     );
 
     const masterSlider = board.create('slider', [
-      [-1.5, -1.3],
-      [-0.5, -1.3],
-      [0, 2, 9]
+      [-1.8, -1.3],
+      [0, -1.3],
+      [0, 2, 10]
     ], {
       label: {
-        visible: true,
+        visible: false,
       },
       anchorY: 'bottom',
       highline: {
@@ -48,10 +48,10 @@ const HelixCosSin = () => {
     });
 
     const figureName = sliderVal => {
-      let slider = Math.min(Math.max(sliderVal, 0), 8);
-      if (slider >= 7.67) {
+      let slider = Math.min(Math.max(sliderVal, 0), 9);
+      if (slider >= 8.67) {
         return "cos(x)";
-      } else if (slider >= 6.00) {
+      } else if (slider >= 7.00) {
         return "Helix";
       } else if (slider >= 4.00) {
         return "Unit Circle";
@@ -63,7 +63,7 @@ const HelixCosSin = () => {
     }
 
     board.create('text', [
-      0.5, -1.3,
+      0.3, -1.3,
       () => '<span style="color:hotpink">' + figureName(masterSlider.Value()) + '</span>'
     ], {
       fontSize: 18,
@@ -71,16 +71,20 @@ const HelixCosSin = () => {
     });
 
     const azimuth = sliderVal => {
-      let slider = Math.min(Math.max(sliderVal, 0), 8);
+      let slider = Math.min(Math.max(sliderVal, 0), 9);
       let s, start, end;
-      if (slider > 7) {
-        s = slider - 7;
+      if (slider > 8) {
+        s = slider - 8;
         start = 6.56;
         end = 6.28;
-      } else if (slider > 6) {
-        s = slider - 6;
+      } else if (slider > 7) {
+        s = slider - 7;
         start = 6.46;
         end = 6.56;
+      } else if (slider > 6) {
+        s = slider - 6;
+        start = 6.48;
+        end = 6.46;
       } else if (slider > 5) {
         s = slider - 5;
         start = 4.88;
@@ -110,16 +114,20 @@ const HelixCosSin = () => {
     };
 
     const elevation = sliderVal => {
-      let slider = Math.min(Math.max(sliderVal, 0), 8);
+      let slider = Math.min(Math.max(sliderVal, 0), 9);
       let s, start, end;
-      if (slider > 7) {
-        s = slider - 7;
+      if (slider > 8) {
+        s = slider - 8;
         start = 0.67;
         end = 0.00;
+      } else if (slider > 7) {
+        s = slider - 7;
+        start = 1.57;
+        end = 0.67;
       } else if (slider > 6) {
         s = slider - 6;
         start = 1.57;
-        end = 0.67;
+        end = 1.57;
       } else if (slider > 5) {
         s = slider - 5;
         start = 1.57;
@@ -149,20 +157,24 @@ const HelixCosSin = () => {
     };
 
     const banking = sliderVal => {
-      let slider = Math.min(Math.max(sliderVal, 0), 8);
+      let slider = Math.min(Math.max(sliderVal, 0), 9);
       let s, start, end;
-      if (slider > 7) {
-        s = slider - 7;
+      if (slider > 8) {
+        s = slider - 8;
         start = 1.75;
         end = 1.575;
+      } else if (slider > 7) {
+        s = slider - 7;
+        start = 1.575;
+        end = 1.75;
       } else if (slider > 6) {
         s = slider - 6;
-        start = 1.75;
-        end = 1.75;
+        start = 1.575;
+        end = 1.575;
       } else if (slider > 5) {
         s = slider - 5;
         start = 1.75;
-        end = 1.75;
+        end = 1.575;
       } else if (slider > 4) {
         s = slider - 4;
         start = 1.75;
@@ -189,7 +201,7 @@ const HelixCosSin = () => {
 
     let view = board.create('view3d',
       [
-        [-0.3, -0.7], [2, 2],
+        [-0.3, -0.8], [2., 2.2],
         [
           [-1.22, 1.22],
           [-1.22, 1.22],
