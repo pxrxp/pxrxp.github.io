@@ -39,11 +39,11 @@ const NumberLineFunction = () => {
     let radio = board.create('text', [
       5.2, -3.2,
       `
-        <input type="radio" name="plotType" value="0" onchange="window.updateBoard();" checked />Function 1<br/>
-        <input type="radio" name="plotType" value="1" onchange="window.updateBoard();" />Function 2<br/>
-        <input type="radio" name="plotType" value="2" onchange="window.updateBoard();" />Function 3<br/>
-        <input type="radio" name="plotType" value="3" onchange="window.updateBoard();" />Function 4<br/>
-        <input type="radio" name="plotType" value="4" onchange="window.updateBoard();" />Function 5<br/>
+        <input type="radio" name="funcId" value="0" onchange="window.updateBoard();" checked />Function 1<br/>
+        <input type="radio" name="funcId" value="1" onchange="window.updateBoard();" />Function 2<br/>
+        <input type="radio" name="funcId" value="2" onchange="window.updateBoard();" />Function 3<br/>
+        <input type="radio" name="funcId" value="3" onchange="window.updateBoard();" />Function 4<br/>
+        <input type="radio" name="funcId" value="4" onchange="window.updateBoard();" />Function 5<br/>
         `
     ], { fixed: true });
 
@@ -84,7 +84,8 @@ const NumberLineFunction = () => {
         label: {
           visible: false
         },
-        fixed: true
+        insertTicks: false,
+        ticksDistance: 1
       },
       strokeWidth: 2
     });
