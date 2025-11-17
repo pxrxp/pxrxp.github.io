@@ -3,18 +3,50 @@ layout: '../../layouts/BlogPost.astro'
 title: 'Journey from Euler to Fourier'
 ---
 import EqPlot from '../components/EqPlot.jsx'
+import ExpX from '../components/ExpX.jsx'
+import HelixCosSin from '../components/HelixCosSin.jsx'
+import IotaCycle from '../components/IotaCycle.jsx'
 import TangentCos from '../components/TangentCos.jsx'
 import TangentSin from '../components/TangentSin.jsx'
 import TaylorExpansionCos from '../components/TaylorExpansionCos.jsx'
 import TaylorExpansionSin from '../components/TaylorExpansionSin.jsx'
 import SlopeLine from '../components/SlopeLine.jsx'
-import NumberLineMulNegOneExample from '../components/NumberLine.jsx'
-import ReImRotExample from '../components/ImaginaryRotation.jsx'
+import NumberLineMulNegOne from '../components/NumberLine.jsx'
+import ReImRot from '../components/ImaginaryRotation.jsx'
 import LinearApproximationTaylor from '../components/LinearApproximationTaylor.jsx'
 
-# Journey from Euler to 
-## Complex Number
-<NumberLineMulNegOneExample client:visible/>
+# Journey from Euler to Fourier
+
+## Table of Contents
+
+- [Complex Numbers](#complex-numbers)
+- [Unit Circle](#unit-circle)
+  - [Equation of Circle](#equation-of-circle)
+  - [Measurements from the Unit Circle](#measurements-from-the-unit-circle)
+  - [Some Important Identities](#some-important-identities)
+- [Taylor Series](#taylor-series)
+  - [Definition of Maclaurin Series](#definition-of-maclaurin-series)
+  - [Definition of Taylor Series](#definition-of-taylor-series)
+- [Derivative](#derivative)
+  - [Equation of Straight Line](#equation-of-straight-line)
+  - [Definition of Derivative](#definition-of-derivative)
+- [Permutation and Combination](#permutation-and-combination)
+  - [Definition of Factorial](#definition-of-factorial)
+  - [Definition of Permutation](#definition-of-permutation)
+  - [Definition of Combination](#definition-of-combination)
+- [Binomial Theorem](#binomial-theorem)
+  - [Power Rule of Derivatives](#power-rule-of-derivatives)
+  - [Coefficients of Taylor Series](#coefficients-of-taylor-series)
+  - [Final Formula for Taylor Series](#final-formula-for-taylor-series)
+- [Taylor Series Expansion of Common Functions](#taylor-series-expansion-of-common-functions)
+  - [Graphical Method for Calculating Derivatives](#graphical-method-for-calculating-derivatives)
+  - [Finding Expressions for cos(x), sin(x)](#finding-expressions-for-cosx-sinx)
+- [Exponential Function](#exponential-function)
+  - [Euler's Number](#eulers-number)
+  - [Euler's Identity](#eulers-identity)
+
+## Complex Numbers
+<NumberLineMulNegOne client:visible/>
 <br/>
 This is the good and old number line. Here, we see:
 
@@ -34,8 +66,38 @@ $$
 \text{i.e.} \boldsymbol{-1} &= \boldsymbol{1\angle180^\circ}
 \end{aligned}
 $$
+<details>
+<summary>What's $\text{rad}$?</summary>
+Radians [ $\text{rad}$ ] is a unit for angle like degrees [$\;^\circ\;$]
+
+If we could accurately measure, we'd find:
+<br/>Arc length of the circle **below** (i.e. distance along the full curve of circle) = $6.28318\ldots$
+
+We'll call this constant $2\pi$ $\Longrightarrow \boldsymbol{2\pi = 6.28318\ldots}$
+<br/>Why 2? *Historical reasons...*
+
+Some people also call it $\tau$ (as in a full *turn* or complete circle).
 <br/>
-<ReImRotExample client:visible/>
+We can use this arc length to measure the angle instead.
+$$
+\begin{aligned}
+360^\circ &\equiv 2\pi \text{ rad}\\
+\\
+180^\circ &\equiv \pi \text{ rad}\\
+\\
+90^\circ &\equiv \frac\pi2 \text{ rad}\\
+\\
+45^\circ &\equiv \frac\pi4 \text{ rad}\\
+\\
+&\;\;\vdots
+\end{aligned}
+$$
+(*Also it has to be the circle **below**, not some random circle. It's just defined that way.*)
+
+</details>
+
+<br/>
+<ReImRot client:visible/>
 <br/>
 But for the **rotation** to be **possible**, we had to add a second **perpendicular axis**.
 
@@ -83,13 +145,13 @@ $\theta = $ angle from X axis $=\arg(z)$
 <br/>
 ---
 <br/>
-## Unit circle
+## Unit Circle
 Let $z = x+iy$ be any arbitrary point on the circle.
 
 All points of a circle are at same distance (called *radius*) from the center of the circle.
 
 <br/>
-**Equation of circle:** 
+### Equation of Circle
 
 $$
 \begin{aligned}
@@ -111,7 +173,7 @@ $\therefore r = \text{const }$, $z$ depends mainly on $\theta$
 Let $x = f_1(\theta), \text{ }y = f_2(\theta)$
 
 <br/>
-**Measurements from the unit circle:**
+### Measurements from the Unit Circle
 | | $0$ | $\dfrac{\pi}{4}$ | $\dfrac{\pi}{2}$ | $\dfrac{3\pi}{4}$ |
 | :--- | :---: | :---: | :---: | :---: |
 | $x=f_1(\theta)$ | $1$ | $\dfrac{\sqrt{2}}{2}$ | $0$ | $-\dfrac{\sqrt{2}}{2}$ |
@@ -221,7 +283,7 @@ $f_1(\theta)=\cos(\theta)$ and $f_2(\theta)=\sin(\theta)$
 />
 <br/>
 <br/>
-**Some Important Identities:**
+### Some Important Identities
 
 $$
 \begin{aligned}
@@ -343,24 +405,43 @@ $f(0)=1-0^2 = 1 =cos(0)$
 But such method cant be used to accurately approximate. We need a more robust method.
 Let us take a **leap of faith** and just say...
 
-$cos(x) \approx a_0 + a_1x + a_2x^2 + \ldots$
+$\cos x \approx a_0 + a_1x + a_2x^2 + \ldots$
 <br/>
 
 We need to find a method that will calculate 
-$a_0 = ?$, $\text{ }a_1=?$, $\text{ }a_2=?$, $\text{ }\ldots$
+* $a_0 = ?$
+* $a_1=?$
+* $a_2=?$
+
+$\qquad\quad\vdots$
+
+<br/>
 
 We don't have a formula or anything for $cos(x)$ yet that we could use to simplify.
 We can only **evaluate** it at **different points** using that unit circle.
 <br/>
 
 Our method needs to take values of $cos(x)$ at different points and spit out $a_0, a_1, a_2, \ldots$
-
-For $f(x)=x^3$, the method would output $a_3 = 1, a_0 = a_1 = a_2 = a_4 = \ldots = 0$
+<br/>
+For $f(x)=x^3$, the method would output
+* $a_3 = 1$,
+* $a_0 = a_1 = a_2 = a_4 = \ldots = 0$
 
 <br/>
-This is actually called **McLaurin series**.
-It is a **generalization of Taylor series** (approximated at origin i.e. calculated at $\boldsymbol{a = 0}$).
+---
 <br/>
+The leap of faith we took to approximate $\cos x$ is actually called the **Maclaurin series**.
+<br/>
+
+### Definition of Maclaurin Series
+$f(x) = a_0 + a_1 x + a_2 x^2 + \ldots$
+<br/>
+Maclaurin series is actually a **generalization of Taylor series**.
+
+(approximated at origin i.e. calculated at $\boldsymbol{a = 0}$)
+<br/>
+
+### Definition of Taylor Series
 **Taylor Series expansion**  of a function f(x) **at point** $\boldsymbol{x = a}$ is:
 
 $$
@@ -399,6 +480,8 @@ f(x) &= f(a) + a_1 (x-a)\\
 $$
 ---
 <br/>
+### Equation of Straight Line
+
 For a *circle*,
 
 **distance** between **origin** and any **point** of circle $= \text{constant}$
@@ -447,10 +530,11 @@ $[\because \Delta x \ne 0, \Delta x \to 0]$
 Example:
 
 $\frac{0.00000000000000001}{0.00000000000000002} = \frac12=0.5 \text{ (some value)}$
-
+<br/>
+We actually just discovered **derivative**.
 <br/>
 ---
-This is actually the **definition of a derivative**.
+### Definition of Derivative
 $$
 \begin{aligned}
 \boldsymbol{f'(x)} \text{ or } \boldsymbol{\frac{d}{dx}f(x)} &= \boldsymbol{\lim_{\Delta x \to 0} \frac{\Delta f}{\Delta x}}
@@ -483,7 +567,10 @@ Let's try to generalize $f(x)$ to see if we can simplify the process.
 
 $$
 \begin{aligned}
-f(x) &= a_0+a_1(x-a) + a_2(x-a)^2+\dots\\
+f(x) &= a_0\\
+&+a_1(x-a)\\
+&+ a_2(x-a)^2\\
+&+\dots\\\\
 &= \sum_{n=0}^\infty \text{ }a_n (x-a)^n\\
 \\
 \text{where }a_0&=f(a),\\
@@ -620,7 +707,9 @@ This is actually the factorial function.
 <br/>
 ---
 <br/>
-**Factorial of n** can be defined as
+### Definition of Factorial
+
+Factorial of n can be defined as
 
 $$
 \begin{aligned}
@@ -634,7 +723,9 @@ $$
 $$
 <br/>
 ---
+### Definition of Permutation
 <br/>
+
 No. of ways of arranging $n$ **distinct objects** into $n$ **slots** $=n!$
 
 Example:
@@ -686,6 +777,7 @@ But in reality, the three $a$'s are not distinct.
 All of these $aaa$ are equal to $a^3$.
 <br/>
 ---
+### Definition of Combination
 <br/>
 So, we define:
 
@@ -722,6 +814,7 @@ $$
 $$
 <br/>
 ---
+### Power Rule of Derivatives
 <br/>
 
 Now, let's rewind a bit. The whole reason we got into the rabbit hole was to find an expression for the derivative of Taylor series approximation of a function $f(x)$
@@ -743,12 +836,16 @@ $$
 &+ \Delta x^2
 \\\\
 g'(x) &= \lim_{\Delta x\to 0}\frac{(x+\Delta x)^n - x^n}{\Delta x}\\\\
-&= \lim_{\Delta x\to 0}nx^{n-1} + \binom{n}{2}x^{n-1}\Delta x + \ldots\\\\
+&= \lim_{\Delta x\to 0}\quad nx^{n-1}\\
+&\qquad\qquad+ \binom{n}{2}x^{n-1}\Delta x\\
+&\qquad\qquad+ \ldots\\\\
 &= nx^{n-1}
 \end{aligned}
 $$
 
-<br/><br/>
+<br/>
+This is called the **power rule of derivatives**.
+<br/>
 
 $$
 \begin{aligned}
@@ -759,8 +856,11 @@ $$
 
 <br/>
 ---
+### Coefficients of Taylor Series
 <br/>
-Now, back to Taylor's series!
+Now, back to Taylor series!
+
+We can now apply the power rule to calculate the derivatives:
 <br/>
 
 $$
@@ -812,11 +912,17 @@ $$
 <br/>
 **FINALLYYYY!!!!!** 🎉
 
-We have the formula of coefficient of Taylor's expansion.
+We have the formula for the coefficients of Taylor expansion. This is what makes it **THE TAYLOR SERIES**.
+
+Without them, this is just a generic **power series**.
+
+$f(x) = a_0 + a_1 (x-a) + a_2 (x-a)^2 + \ldots$
+
+$\qquad = \sum_{n = 0}^\infty a_0 (x-a)^n$
 <br/>
 ---
 <br/>
-### Final Formula for Taylor's Series
+### Final Formula for Taylor Series
 
 $$
 \begin{aligned}
@@ -831,6 +937,8 @@ f(x) &= \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!} (x-a)^n \\
 $$
 
 ---
+## Taylor Series Expansion of Common Functions
+### Graphical Method for Calculating Derivatives
 <br/>
 
 Let's try to calculate the series for some functions:
@@ -841,7 +949,7 @@ $f_2(x) = \sin x=\text{ }?$
 <br/>
 But we don't know the derivatives of $f_1(x)$ or $f_2(x)$
 
-* We also **don't have a formula** for $\cos x$ or $\sin x$. That's actually what sparked the search for an approximation formula and study of Taylor's series.
+* We also **don't have a formula** for $\cos x$ or $\sin x$. That's actually what sparked the search for an approximation formula and study of Taylor series.
 
 * **Binomial theorem isn't suitable** here.
 
@@ -880,9 +988,8 @@ $$
 
 <br/>
 ---
+### Finding Expressions for cos(x), sin(x)
 <br/>
-
-## Taylor's Series expansion of common functions
 
 |$f(x)$|$\cos x$|$\sin x$|
 |---:|---:|---:|
@@ -927,7 +1034,7 @@ $\sin x = x - \dfrac{(x-a)^3}{3!} + \dfrac{(x-a)^5}{5!} - \dfrac{(x-a)^7}{7!} + 
 <br/>
 **Higher the no. of terms**, the **more accurate** the approximation will be **around** the point $x=a$.
 
-If we **approximate** near **origin**, **both sides** (+x, -x) can be **equally captured**.
+If we **approximate** near **origin** (i.e. use Maclaurin series), **both sides** (+x, -x) can be **equally captured**.
 
 <br/>
 
@@ -950,6 +1057,136 @@ $$
 <br/>
 ---
 <br/>
+## Exponential Function
+Let's get back to our roots. The whole discussion started with complex numbers and the unit circle. Let's get back to it!
+
+$$
+\begin{aligned}
+z &= \cos \theta + i \sin \theta\\
+\\
+&= \left[1 - \frac{\theta^2}{2!} + \frac{\theta^4}{4!} - \frac{\theta^6}{6!} + \dots\right]\\
+&+ i\left[x - \frac{\theta^3}{3!} + \frac{\theta^5}{5!} - \frac{\theta^7}{7!} + \dots\right]\\
+\\\\
+&= \textcolor{hotpink}1\;\frac{\theta^0}{0!}
+\textcolor{brown}+\textcolor{brown}i\;\frac{\theta^1}{1!}
+\textcolor{green}{-1} \frac{\theta^2}{2!}
+\textcolor{gray}{-i}\;\frac{\theta^3}{3!}\\
+\\
+&\;\textcolor{hotpink}{+1}\; \frac{\theta^4}{4!}
+\textcolor{brown}{+ i}\;\frac{\theta^5}{5!}
+\textcolor{green}{-1} \frac{\theta^6}{6!}
+\textcolor{gray}{-i}\;\frac{\theta^7}{7!}\\
+\end{aligned}
+$$
+
+<br/>
+<br/>
+<IotaCycle client:visible/>
+<br/>
+<br/>
+
+$i^0 = 1, \quad i^1 = i, \quad i^2 = -1, \quad i^3 = -i$
+
+$i^4 = 1, \quad i^5 = i, \quad i^6 = -1, \quad i^7 = -i$
+
+$\vdots\qquad\qquad\vdots\qquad\qquad\vdots\qquad\qquad\vdots$
+
+$\Longrightarrow i^n = \begin{cases}
+  1  & \text{if } n \equiv 0 \pmod{4} \\
+  i  & \text{if } n \equiv 1 \pmod{4} \\
+  -1 & \text{if } n \equiv 2 \pmod{4} \\
+  -i & \text{if } n \equiv 3 \pmod{4}
+\end{cases}$
+<br/>
+
+$$
+\begin{aligned}
+z = \frac{(i\theta)^0}{0!} + \frac{(i\theta)^1}{1!} + \frac{(i\theta)^2}{2!} + \ldots
+\end{aligned}
+$$
+
+Just like $\cos x$ and $\sin x$, this is a new function we have discovered.
+
+We can define it as:
+
+$$
+\begin{aligned}
+\exp\;(i\theta) &= 1 + i\theta + \frac{(i\theta)^2}{2!} + \frac{(i\theta)^3}{3!} + \ldots\\
+\\
+\Rightarrow\boldsymbol{\exp\;(x)} &= \boldsymbol{1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \ldots}
+\end{aligned}
+$$
+<br/>
+---
+### Euler's Number
+<br/>
+<ExpX client:visible />
+<br/>
+The plot shows that $\exp (x)$ is a function that rapidly grows.
+The only other function that shows this kind of behavior is $n^x$ where $n>1$.
+
+Example:
+|$3^1$|3|
+|---|---|
+|$3^2$|9|
+|$3^3$|27|
+|$3^4$|81|
+|$3^5$|243|
+<br/>
+<br/>
+From graph, we can see:
+$$
+\begin{aligned}
+\boldsymbol{\exp (x)} &= \boldsymbol{2.71828^x}\\
+&= \boldsymbol{e^x}
+\end{aligned}
+$$
+
+The constant $e = 2.7182812824\ldots$ is called **Euler's number** or **Napier's number**.
+<br/>
+---
+<br/>
+### Euler's Identity
+$$
+\therefore\boldsymbol{e^{i\theta}} = \boldsymbol{\cos (\theta) + i \sin (\theta)}
+$$
+<br/>
+$\Longrightarrow e^{i\pi}=-1$ (called the most beautiful equation in mathematics)
+
+(Alternative way of writing $1\angle 180^\circ= -1$)
+<br/>
+---
+<br/>
+Let's play a game! Guess which function is this.
+<details>
+<summary>Reveal the answer.</summary>
+It's actually $f(x) = x$.
+
+Congrats, if you got it, because I wouldn't.
+
+From this view, $x^3$, $2x$, $1753x$, $x^7$, $x^{153}$ $\ldots$ all look the same.
+<br/>
+This is because we are actually familiar with seeing $f(x) \text{ vs }x$ plots.
+
+This one is $f(x)$ only.
+We evaluated the function at many points and plotted them on a vertical number line.
+</details>
+
+<br/>
+Guess what, we have been making the same mistake for $f(\theta)=e^{i\theta}$
+
+The unit circle was just the $f(\theta)$. We need to actually add a third axis and plot $f(\theta) \text{ vs }\theta$.
+<HelixCosSin client:visible />
+**Now, we see the full picture!**
+
+$f(\theta)=e^{i\theta}$ is actually a **helix**.
+* In one view, we see $\boldsymbol{\cos \theta}$.
+* In another, we see $\boldsymbol{\sin \theta}$.
+* In another, the familiar **unit circle**.
+
+**It's all a matter of perspective.**
+<br/>
+---
 
 <br/>
 

@@ -21,7 +21,7 @@ const boardConfig = {
   },
 };
 
-const NumberLineMulNegOneExample = () => {
+const NumberLineMulNegOne = () => {
 
   const boardRef = useRef(null);
 
@@ -84,4 +84,4 @@ const NumberLineMulNegOneExample = () => {
   );
 };
 
-export default NumberLineMulNegOneExample;
+export default NumberLineMulNegOne;

@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useMemo } from 'react';
 import { JSXGraph } from "jsxgraph";
 
@@ -43,7 +42,7 @@ const boardConfig = {
   }
 };
 
-const ReImRotExample = () => {
+const ReImRot = () => {
 
   const boardRef = useRef(null);
 
@@ -213,4 +212,4 @@ const ReImRotExample = () => {
   );
 };
 
-export default ReImRotExample;
+export default ReImRot;
