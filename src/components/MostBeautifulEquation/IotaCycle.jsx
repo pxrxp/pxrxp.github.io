@@ -125,7 +125,8 @@ const IotaCycle = () => {
       0.03, -0.9,
       "- i"
     ], {
-        fontSize: 15
+        fontSize: 15,
+        fixed: true,
       }
     );
 
@@ -133,7 +134,8 @@ const IotaCycle = () => {
       0.03, 0.9,
       "+ i"
     ], {
-        fontSize: 15
+        fontSize: 15,
+        fixed: true,
       }
     );
 
@@ -141,7 +143,8 @@ const IotaCycle = () => {
       0.9, -0.1,
       "1"
     ], {
-        fontSize: 15
+        fontSize: 15,
+        fixed: true,
       }
     );
 
@@ -149,7 +152,8 @@ const IotaCycle = () => {
       -0.95, -0.1,
       "-1"
     ], {
-        fontSize: 15
+        fontSize: 15,
+        fixed: true,
       }
     );
 

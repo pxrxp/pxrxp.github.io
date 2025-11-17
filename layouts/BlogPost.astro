@@ -39,8 +39,9 @@ import ThemeToggleButton from '../src/components/ThemeToggleButton.jsx';
       <slot />
     </main>
 
-    <ThemeToggleButton client:load />
-
-    <a href="/" class="ui-button" id="home-button" aria-label="Home">🏠</a>
+    <nav>
+      <ThemeToggleButton client:load />
+      <a href="/" class="ui-button" id="home-button" aria-label="Home">🏠</a>
+    </nav>
 </body>
 </html>

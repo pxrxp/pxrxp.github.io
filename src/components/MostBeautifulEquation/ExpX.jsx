@@ -74,7 +74,8 @@ const ExpX = () => {
       -5, 4,
       '<span style="color: lightblue">exp (x)</span>'
     ], {
-        fontSize: 18
+        fontSize: 18,
+        fixed: true,
       }
     );
 
@@ -82,7 +83,8 @@ const ExpX = () => {
       -5, 3,
       () => '<span style="color: hotpink">' + coeff.Value().toFixed(5) + '<sup>x</sup></span>'
     ], {
-        fontSize: 18
+        fontSize: 18,
+        fixed: true,
       }
     );
 

@@ -58,13 +58,23 @@ const SlopeLine = () => {
         () => (p1.X() + pCorner.X()) / 2,
         () => p1.Y(),
         'Run (Δx)'
-    ], { anchorX: 'middle', anchorY: 'top', fontSize: 16 });
+    ], {
+       anchorX: 'middle',
+       anchorY: 'top',
+       fontSize: 16,
+       fixed: true,
+   });
 
     board.create('text', [
         () => p2.X(),
         () => (pCorner.Y() + p2.Y()) / 2,
         '&nbsp; Rise (Δf)'
-    ], { anchorX: 'left', anchorY: 'middle', fontSize: 16 });
+    ], {
+        anchorX: 'left',
+        anchorY: 'middle',
+        fontSize: 16,
+        fixed: true,
+    });
 
     board.create('text', [
         4.2,2.7,
@@ -73,7 +83,8 @@ const SlopeLine = () => {
         rotate: 39.5,
         anchorX: 'right',
         anchorY: 'bottom',
-        fontSize: 16
+        fontSize: 16,
+        fixed: true,
       }
     );
 
