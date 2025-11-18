@@ -59,6 +59,7 @@ const ExpX = () => {
       digits: 5,
       snapWidth: 0.67957,
       anchorY: 'bottom',
+      moveOnUp: false,
       highline: {
         strokeColor: '#666666'
       },

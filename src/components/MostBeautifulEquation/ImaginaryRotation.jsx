@@ -158,6 +158,7 @@ const ReImRot = () => {
       name: '· Speed',
       snapWidth: 0.01,
       anchorY: 'bottom',
+      moveOnUp: false,
       highline: {
         strokeColor: '#666666'
       },

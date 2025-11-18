@@ -70,6 +70,7 @@ const TaylorExpansionSin = () => {
         snapWidth: 1,
         digits: 0,
         anchorY: 'bottom',
+        moveOnUp: false,
         highline: {
           strokeColor: '#666666'
         },

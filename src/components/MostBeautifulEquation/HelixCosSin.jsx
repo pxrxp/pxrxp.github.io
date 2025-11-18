@@ -44,6 +44,7 @@ const HelixCosSin = () => {
       label: {
         visible: false,
       },
+      moveOnUp: false,
       anchorY: 'bottom',
       highline: {
         strokeColor: '#666666'
