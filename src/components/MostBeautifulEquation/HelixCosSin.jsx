@@ -4,7 +4,7 @@ import { JSXGraph } from "jsxgraph";
 const containerStyle = {
   width: '100%',
   maxWidth: '800px',
-  maxHeight: '600px',
+  maxHeight: '800px',
   aspectRatio: '1',
   margin: 'auto',
 };
@@ -199,7 +199,7 @@ const HelixCosSin = () => {
 
     let view = board.create('view3d',
       [
-        [-0.3, -0.8], [2., 2.2],
+        [-0.3, -0.8], [2., 2],
         [
           [-1.22, 1.22],
           [-1.22, 1.22],
