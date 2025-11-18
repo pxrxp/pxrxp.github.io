@@ -28,7 +28,7 @@ const ThemeToggleButton = () => {
   }
 
   return (
-    <button onClick={toggleTheme} class="ui-button" id="theme-toggle-button" aria-label="Toggle theme">
+    <button onClick={toggleTheme} className="ui-button" id="theme-toggle-button" aria-label="Toggle theme">
       {theme === 'light' ? '🌙' : '☀️'}
     </button>
   );

@@ -43,7 +43,7 @@ import LinearApproximationTaylor from '../components/MostBeautifulEquation/Linea
   - [Final Formula for Taylor Series](#final-formula-for-taylor-series)
 - [Taylor Series Expansion of Common Functions](#taylor-series-expansion-of-common-functions)
   - [Graphical Method for Calculating Derivatives](#graphical-method-for-calculating-derivatives)
-  - [Finding Expressions for cos(x), sin(x)](#finding-expressions-for-cosx-sinx)
+  - [Formulas for cos(x), sin(x)](#formulas-for-cosx-sinx)
 - [Exponential Function](#exponential-function)
   - [Euler's Number](#eulers-number)
 - [The Final Chapter](#the-final-chapter)
@@ -334,17 +334,34 @@ $$
 ---
 <br/>
 ## Taylor Series
-We said that the cosine and sine functions did not resemble any functions we knew.
+<details>
+<summary>Why are we learning this now?</summary>
+While we've just derived what we're calling the cosine function, it has, of course, been known and studied for ages.
+Nowadays, we can do all sorts of stuff with computers and calculators. What did they, who actually discovered it the first time, have?
 
-But we might want a method to **approximate** these functions numerically. Graphically drawing a circle each time and measuring might not be convenient.
+Even if we suppose they had some primitive calculator, how would the calculator understand $\cos x$ or $\sin x$.
+Till now, we have only  been able to calculate it graphically (using powerful computers behind the scenes).
+But for them, using graphs would be imprecise, subjective, and is not scalable.
+
+Thus, we want to find some kind of formula to numerically calculate $\cos x$ or $\sin x$.
+
+If we have some formula, we could use that for simplification, and perhaps learn some new insights.
+</details>
+
 <br/>
 If we **ignore** the **periodicity** of cosine for a while, we see,
 
 $cos(x)$ resembles $1-x^2$ a liii...ttle bit, especially at the origin ($x=0$).
 <br/>
-*We've started using $x$ instead of $\theta$ but it's just a different name for the same variable,*
+<details>
+<summary>Why $x$, wasn't it $\theta$?</summary>
+We've started using $x$ instead of $\theta$ because
+<br/>finding the formula for some function isn't just specific to $\cos$ or $\sin$.
 
-*no connection with the $z=x+iy$*
+We wanted to keep it general.
+It's just a different name for the same variable,
+<br/>(no connection with the $z=x+iy$)
+</details>
 
 <br/>
 <details>
@@ -426,20 +443,23 @@ $\qquad\quad\vdots$
 
 <br/>
 
-We don't have a formula or anything for $cos(x)$ yet that we could use to simplify.
-We can only **evaluate** it at **different points** using that unit circle.
+We don't know anything about $\cos$. We can only **evaluate** $\cos x$ at **different points** using that unit circle.
 <br/>
 
-Our method needs to take values of $cos(x)$ at different points and spit out $a_0, a_1, a_2, \ldots$
+So, we need to find something that'll take values of $cos(x)$ at different points and spit out $a_0, a_1, a_2, \ldots$
 <br/>
-For $f(x)=x^3$, the method would output
+For $f(x)=x^3$, we would provide
+
+$f(0) = 0$, $f(1) = 1$, $f(2) = 8$, $\ldots$
+
+and it would output
 * $a_3 = 1$,
 * $a_0 = a_1 = a_2 = a_4 = \ldots = 0$
 
 <br/>
 ---
 <br/>
-The leap of faith we took to approximate $\cos x$ is actually called the **Maclaurin series**.
+The leap of faith we took earlier to approximate $\cos x$ is actually called the **Maclaurin series**.
 <br/>
 
 ### Definition of Maclaurin Series
@@ -461,6 +481,9 @@ $$
 {}&+ \boldsymbol{\dots}
 \end{aligned}
 $$
+Now, we just need to find these coefficients $a_0$, $a_1$, $a_2$, $\ldots$ somehow then, we're done.
+
+We'll then have the formulas for $\cos x$ and $\sin x$.
 <br/>
 ---
 <br/>
@@ -476,17 +499,21 @@ f(a) &= a_0 \\
 \Longrightarrow a_0 &= f(a)
 \end{aligned}
 $$
+**We found one coefficient!**
 
-The approximation still has an infinite no. of terms which we can't tackle yet.
-So, let us simplify the approximation even more (*just to explore*):
+The approximation still has an infinite no. of terms which I don't even know what to do with.
+
+So, let us simplify the approximation a little bit. (*just to explore*)
 
 $$
 \begin{aligned}
-f(x) &= f(a) + a_1 (x-a)\\
+f(x) &\approx f(a) + a_1 (x-a)\\
 \\
 \Longrightarrow a_1 &= \dfrac{f(x)-f(a)}{x-a}
 \end{aligned}
 $$
+Hmm, this reminds me of something. Let's take a quick detour.
+
 ---
 <br/>
 ### Equation of Straight Line
@@ -508,39 +535,44 @@ $$
 a_1 &= \dfrac{f(x)-f(a)}{x-a} &= \frac{\Delta f}{\Delta x}
 \end{aligned}
 $$
-So, this is actually the **equation of a straight line**.
+So, the equation we saw earlier is actually the **equation of a straight line**.
+
+The detour we took was to explain this.
 <br/>
 <SlopeLine client:visible/>
 <br/>
 ---
 <br/>
-We had earlier ignored all the other terms like $a_2 (x-a)^2+a_3(x-a)^3+\ldots$.
+Hmm, so we can only approximate the function as a line (called **tangent line**).
 
-If we do this, we can only approximate the function as a line (called **tangent line**).
+This is because we had earlier ignored all the other terms like $a_2 (x-a)^2+a_3(x-a)^3+\ldots$
 
 The curviness is not approximated yet.
 <br/>
 <LinearApproximationTaylor client:visible/>
 <br/>
-Still, this approximation definitely holds near $x=a$ and **only near** $x=a$.
+Still, this approximation **definitely holds** near $x=a$ and **only near** $x=a$.
+
+And remember, Taylor series was calculated at $x=a$.
 <br/>
 
-But,
+This means, we could use this to find $a_1$ (the next piece of our puzzle)
+
 $a_1|_{x=a} = \frac{f(a)-f(a)}{a-a}=\frac00=\text{undefined }$
-<br/>
 $[\because \Delta x = 0]$
 <br/>
-But, if $x$ is *veryy veryyy* close to a but $x\ne a$ i.e. $x\to a$:
+Bad luck 😔
 
-$a_1|_{x\to a} = \frac{\text{very small}}{\text{very small}}=\text{some value }$
-<br/>
-$[\because \Delta x \ne 0, \Delta x \to 0]$
-<br/>
-Example:
+Wait a minute!
 
 $\frac{0.00000000000000001}{0.00000000000000002} = \frac12=0.5 \text{ (some value)}$
 <br/>
-We actually just discovered **derivative**.
+So, if $x$ is *veryy veryyy* close to a but $x\ne a$ i.e. $x\to a$:
+
+$a_1|_{x\to a} = \frac{\text{very small}}{\text{very small}}=\text{some value }$
+$[\because \Delta x \ne 0, \Delta x \to 0]$
+<br/>
+We're back on track and we actually just discovered **derivative**.
 <br/>
 ---
 ### Definition of Derivative
@@ -569,9 +601,15 @@ $$
 Now we can say,
 $a_1 = f'(a)$
 
-Two coefficients found, infinitely many remaining 🙃
+**Finally, two coefficients fou...**
 
-Let's try to generalize $f(x)$ to see if we can simplify the process.
+Wait! Now, **how do I evaluate** $\boldsymbol{f'(a)}$? Do I again make a Taylor series for $f'(x)$ 😳
+
+Hang on, we also have the **definition of derivative** now. Maybe we could find an expression for $f'(x)$ using that.
+
+My mind will crash if I try to do anything with those infinite no. of terms.
+
+Let's try to **generalize** $f(x)$ to see if we can simplify the process.
 <br/>
 
 $$
@@ -592,15 +630,14 @@ $$
 
 ---
 <br/>
-Since, we know the expression for $f(x)$, we can directly evaluate $f(a)$
+I'm no expert, but trying to find the derivative of this monster, 
+$\sum_{n=0}^\infty \text{ }a_n (x-a)^n$
+, seems scary. 😨
 
-But, we don't have an expression for $f'(x)$, we can't directly evaluate $f'(a)$
-<br/>
-It would be too complicated to directly find expression for $f'(x)$.
+How about we tone it down, and first find the derivative of $x^n$. That seems more approachable, isn't it?
 
-Let's first try to find expression for $g'(x)$
+We'll use that definition of derivative we learnt just earlier.
 
-where
 $$
 \begin{aligned}
 g(x) &= x^n\\
@@ -609,7 +646,14 @@ g(x) &= x^n\\
 {}&= \lim_{\Delta x \to 0} \frac{(x+\Delta x)^n - x^n}{\Delta x}
 \end{aligned}
 $$
-We are again stuck. We need to somehow evaluate $(x+\Delta x)^n$
+<br/>
+**UHHHH!!!** We are again stuck. 😭
+
+We need to **somehow evaluate** $\boldsymbol{(x+\Delta x)^n}$
+
+Then, probably we could figure out how to find $f'(x)$ then, eventually $a_1 = f'(a)$ 🥹
+<br/>
+Only if it was $(x+\Delta x)^2$ or $(x + \Delta x)^3$, I would expand it in a minute...
 <br/>
 ---
 <br/>
@@ -712,7 +756,7 @@ There are $3\times 2=6$ choices (AB, AC, BA, BC, CA or CB)
 #### For three slots
 There are $3\times 2 \times 1=6$ choices (ABC, ACB, BAC, BCA, CAB or CBA)
 
-This is actually the factorial function.
+This is actually the **factorial function**.
 <br/>
 ---
 <br/>
@@ -727,7 +771,8 @@ $$
 \\
 \text{Example: }3!&=3\times 2!\\
 {}&=3\times2\times1!\\
-{}&=3\times2\times1\times1
+{}&=3\times2\times1\times0!\\
+{}&=3\times2\times1
 \end{aligned}
 $$
 <br/>
@@ -822,11 +867,15 @@ $$
 \end{aligned}
 $$
 <br/>
+**FINALLY**, all the hard work has paid off! We now have a way to expand $(x+\Delta x)^n$. 😇
+
 ---
 ### Power Rule of Derivatives
 <br/>
 
-Now, let's rewind a bit. The whole reason we got into the rabbit hole was to find an expression for the derivative of Taylor series approximation of a function $f(x)$
+Now, let's rewind a bit. The whole reason we got into the rabbit hole was to find an expression for the derivative of Taylor series of a function $f(x)$.
+
+We're now one step closer in that direction!
 
 We now know,
 
@@ -919,7 +968,7 @@ f^{(n)}(a) = \text{}&n!\text{ } a_n + 0 + 0 + \dots\\\\
 \end{aligned}
 $$
 <br/>
-**FINALLYYYY!!!!!** 🎉
+**Et voilà!!!!!** 🎉
 
 We have the formula for the coefficients of Taylor expansion. This is what makes it **THE TAYLOR SERIES**.
 
@@ -945,26 +994,47 @@ f(x) &= \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!} (x-a)^n \\
 \end{aligned}
 $$
 
+Remember, the whole reason **we got into finding derivative** of Taylor's series was so we could evaluate $\boldsymbol{a_1 = f'(a)}$.
+
+But, we **ended up solving** a even **bigger problem**. We found a **formula** for all the **coefficients** of Taylor's series.
+
+The **original problem** still remains, how do we evaluate $\boldsymbol{f'(a)}$, $\boldsymbol{f''(a)}$, $\ldots$
+
+We have partially solved it for functions like $f(x)=x$, $\;x^2$, $\;x^{0.3}$, $\;x^4$, $\;\ldots$ $\;x^n$.
+
+We are still unable to find $f'(a)$, $f''(a)$, $\ldots$ for $f(x)=\cos x$ or $f(x)=\sin x$.
+
 ---
 ## Taylor Series Expansion of Common Functions
+
+We could try doing something like:
+
+$f(x) = \cos x$
+
+$f'(x) = \lim_{\Delta x\to 0}\dfrac{\cos(x+\Delta x) - \cos x}{\Delta x}$
+
+Now what, we again evaluate $\cos (x + \Delta x)$ **???**
+
+We evaluated $(x+\Delta x)^n$ earlier and for that, we had to discover a new theorem altogether, the **Binomial Theorem**.
+<br/>
+But I actually have a friend, and she told me, it's a **complicated** route. We need a **lot of knowledge about trigonometry and limits**. So, let's not do that!
+<br/>
+**Possible options:**
+* ~~Power rule of derivative~~
+* ~~Limit definition~~
+* Graph ??
+
+---
+
 ### Graphical Method for Calculating Derivatives
+**Remember**, when we **simplified the Taylor series approximation** as:
+
+$f(x)\approx a_0 + a_1 (x-a)$
+
+**We found:**
+
+$f'(x) =\;$ **Slope of tangent** line to function $f(x)$
 <br/>
-
-Let's try to calculate the series for some functions:
-
-$f_1(x) = \cos x=\text{ }?$
-
-$f_2(x) = \sin x=\text{ }?$
-<br/>
-But we don't know the derivatives of $f_1(x)$ or $f_2(x)$
-
-* We also **don't have a formula** for $\cos x$ or $\sin x$. That's actually what sparked the search for an approximation formula and study of Taylor series.
-
-* **Binomial theorem isn't suitable** here.
-
-* Actually, the whole $f'(x)=\lim_{\Delta x\to 0}\frac{\Delta f}{\Delta x}$**definition method isn't suitable** here.<br/><br/>
- $\because$ We **don't have sufficient knowledge** of **trigonometry and limits** yet.
-
 <br/>
 
 The earlier case of $f(x)=x^n$ was **too general** as **$n$ can be anything**.
@@ -973,12 +1043,10 @@ It's **graph** could be quite literally anything from a **straight line** to **p
 <br/>
 
 But,
+**we know what $\boldsymbol{\cos x}$ and $\boldsymbol{\sin x}$ look like**.
 
-for **specific functions** with a **well-defined graph** e.g. $\cos x$, $\sin x$.
-
-we can try the **graphical method** to find the **expression for derivatives**.
+**So, let's try the graphical method!**
 <br/>
-$f'(x)$ is just the **slope of the tangent line** to the $f(x)$.
 
 <br/>
 <TangentSin client:visible/>
@@ -997,7 +1065,7 @@ $$
 
 <br/>
 ---
-### Finding Expressions for cos(x), sin(x)
+### Formulas for cos(x), sin(x)
 <br/>
 
 |$f(x)$|$\cos x$|$\sin x$|
@@ -1084,8 +1152,10 @@ $$
 ---
 <br/>
 ## Exponential Function
-Let's get back to our roots. The whole discussion started with complex numbers and the unit circle. Let's get back to it!
+Now, we can use the **expressions we found** for $\boldsymbol{\cos x}$ and $\boldsymbol{\sin x}$ and get back to the **unit circle**. We might **learn some new insights**.
 
+Let $\boldsymbol z$ be some **arbitrary point on the unit circle**.
+<br/>
 $$
 \begin{aligned}
 z &= \cos \theta + i \sin \theta\\
@@ -1130,18 +1200,22 @@ $$
 z &= \frac{(i\theta)^0}{0!} + \frac{(i\theta)^1}{1!} + \frac{(i\theta)^2}{2!} + \ldots
 \end{aligned}
 $$
+<br/>
+We have **accidentally discovered** the **Taylor series** for **a new function**!
 
-Just like $\cos x$ and $\sin x$, this is a new function we have discovered.
-
-We can define it as:
+We'll name the new function:
 
 $$
 \begin{aligned}
-\exp\;(i\theta) &= 1 + i\theta + \frac{(i\theta)^2}{2!} + \frac{(i\theta)^3}{3!} + \ldots\\
+z&= \exp\; (i\theta)\\\\
+\Rightarrow\exp\;(i\theta) &= 1 + i\theta \;+ \frac{(i\theta)^2}{2!} + \frac{(i\theta)^3}{3!}+ \;\ldots\\
 \\
-\Rightarrow\boldsymbol{\exp\;(x)} &= \boldsymbol{1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \ldots}
+\Rightarrow\boldsymbol{\exp\;(x)} &= \boldsymbol{1 + x \;+\; \frac{x^2}{2!} \;\;+\; \frac{x^3}{3!} \;\;+ \;\ldots}
 \end{aligned}
 $$
+
+<br/>
+We just know the **Taylor series** of the function. We **don't know what** the **function** actually **looks like** or **behaves like**. Let's plot it and see!
 <br/>
 ---
 ### Euler's Number
@@ -1179,7 +1253,13 @@ $$
 <br/>
 ## The Final Chapter
 
-It's been quite the road, but we've almost reached our destination! As the journey is almost over, let's play a game! Guess which function is this. Gotta play fair, don't press the button!
+It's been quite the road, but we've **almost reached our destination**!
+
+As the journey is almost over, let's **play a game**!
+
+**You need to guess which functions are these**.
+<br/>**Gotta play fair, don't press the button!**
+<br/>
 <NumberLineFunction client:visible/><br/>
 <details>
 <summary>Reveal the answer.</summary>
@@ -1190,23 +1270,26 @@ It's been quite the road, but we've almost reached our destination! As the journ
 * $f(x)=\cos x$
 </details>
 <br/>
-Press the button to check if you don't believe me. You haven't already pressed it, have you? 🤨
+**Press the button to check** if you don't believe me. You haven't already pressed it, have you? 🤨
 
 Anyways, congrats, if you got it, because I wouldn't.
 
-From this view, even functions like $x^5$, $2x$, $1753x$, $x^7$, $x^{153}$ $\ldots$ all would look the same as $f(x)=x$. 🤷
+From this view, even functions like $x^5$, $2x$, $1753x$, $x^7$, $x^{153}$ $\ldots$ **all** would **look the same** as $f(x)=x$. 🤷
 <br/>
-This is because we are actually familiar with seeing $f(x) \text{ vs }x$ plots.
+This is because we are actually **familiar** with **seeing** $\boldsymbol{f(x)}$ **vs** $\boldsymbol x$ plots.
 
-This one is $f(x)$ only.
-We evaluated the function at many points and plotted them on a vertical number line.
+**This one is $\boldsymbol {f(x)}$ only.**
+We evaluated the function at many points and **plotted** them **on a vertical number line**.
 
 <br/>
 ---
 <br/>
-Guess what, we have been making the same mistake for $f(\theta)=e^{i\theta}$
+Guess what, we have been making the **same mistake** for $\boldsymbol{f(\theta)=e^{i\theta}}$
 
-The unit circle was just the $f(\theta)$. We need to actually add a third axis and plot $f(\theta) \text{ vs }\theta$.
+The unit circle was just the $f(\theta)$.
+
+We need to actually **add a third axis** and plot
+$\boldsymbol{f(\theta)}$  vs $\boldsymbol\theta$.
 <HelixCosSin client:visible />
 🤯 **Now, we see the full picture!**
 
